@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Encoder & Decoder Tool | Convert URLs Easily</title>
+    <meta name="description" content="Free online URL encoder and decoder tool. Easily encode or decode URLs, query parameters, and special characters. Convert URLs for safe transmission across the web.">
+    <meta name="keywords" content="URL encoder, URL decoder, encode URL, decode URL, URL encoding, URL decoding, URL conversion, URL parameters, URL special characters, percent encoding, URL escape characters">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="URL Encoder & Decoder Tool">
+    <meta property="og:description" content="Free online tool to encode and decode URLs. Convert special characters for safe transmission across the web.">
+    <meta property="og:type" content="website">
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f97316;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --background: #ffffff;
+            --background-alt: #f8fafc;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --error: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--background-alt);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .hero {
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .tool-container {
+            background: var(--background);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+        
+        textarea:disabled {
+            background-color: var(--background-alt);
+            cursor: not-allowed;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background-color: var(--background);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--background-alt);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: var(--background);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(99, 102, 241, 0.1);
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-icon svg {
+            width: 30px;
+            height: 30px;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+        
+        .faq-section {
+            margin: 4rem 0;
+        }
+        
+        .faq-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.25rem;
+            background-color: var(--background);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(99, 102, 241, 0.05);
+        }
+        
+        .faq-question svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question svg {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-color: var(--background);
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 1.25rem;
+            max-height: 500px;
+        }
+        
+        footer {
+            background-color: var(--text);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.success {
+            background-color: var(--success);
+        }
+        
+        .notification.error {
+            background-color: var(--error);
+        }
+        
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .tool-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>URL Encoder & Decoder</h1>
+            <p>Convert URLs safely for transmission across the web</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="hero">
+            <h1>Encode & Decode URLs with Ease</h1>
+            <p>Our free online tool helps you encode special characters in URLs for safe transmission or decode encoded URLs back to their original form.</p>
+        </section>
+        
+        <section class="tool-container">
+            <div class="input-group">
+                <label for="input-text">Enter URL or Text:</label>
+                <textarea id="input-text" placeholder="Enter the URL or text you want to process..."></textarea>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn-primary" id="encode-btn">Encode</button>
+                <button class="btn-primary" id="decode-btn">Decode</button>
+                <button class="btn-secondary" id="clear-btn">Clear</button>
+                <button class="btn-secondary" id="copy-btn">Copy Output</button>
+                <button class="btn-secondary" id="sample-btn">Load Sample</button>
+            </div>
+            
+            <div class="input-group">
+                <label for="output-text">Result:</label>
+                <textarea id="output-text" disabled placeholder="Result will appear here..."></textarea>
+            </div>
+        </section>
+        
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <h3>Fast & Efficient</h3>
+                <p>Instantly encode or decode URLs with our lightning-fast tool that works entirely in your browser.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                </div>
+                <h3>Secure Processing</h3>
+                <p>All encoding and decoding happens locally in your browser. Your data never leaves your device.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                </div>
+                <h3>Standards Compliant</h3>
+                <p>Our tool follows RFC 3986 standards for URL encoding, ensuring compatibility with all web services.</p>
+            </div>
+        </section>
+        
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    What is URL encoding?
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>URL encoding, also known as percent-encoding, is a mechanism for encoding information in a Uniform Resource Identifier (URI) under certain circumstances. URL encoding replaces unsafe ASCII characters with a "%" followed by two hexadecimal digits. For example, a space is encoded as %20.</p>
+                    <p>This encoding is necessary because URLs can only be sent over the Internet using the ASCII character set, and certain characters are reserved or not allowed in URLs.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Why do I need to encode URLs?
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>URL encoding is necessary for several reasons:</p>
+                    <ul>
+                        <li>To transmit characters that are not allowed in a URL, such as spaces, &, ?, =, and other special characters</li>
+                        <li>To handle non-ASCII characters in URLs (like accented letters or non-Latin scripts)</li>
+                        <li>To ensure that data in query parameters is correctly interpreted by web servers</li>
+                        <li>To prevent injection attacks by escaping potentially harmful characters</li>
+                    </ul>
+                    <p>Without proper encoding, URLs containing special characters might break or be interpreted incorrectly by browsers and servers.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    What characters need to be encoded in a URL?
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>The following characters need to be encoded in URLs:</p>
+                    <ul>
+                        <li>Reserved characters: !, *, ', (, ), ;, :, @, &, =, +, $, ,, /, ?, #, [, ]</li>
+                        <li>Unsafe characters: space, ", <, >, %, {, }, |, \, ^, `</li>
+                        <li>Non-ASCII characters: é, ñ, 中, 日, etc.</li>
+                    </ul>
+                    <p>These characters are encoded as a percent sign (%) followed by their ASCII value in hexadecimal. For example, a space is encoded as %20.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    What's the difference between URL encoding and HTML encoding?
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>URL encoding and HTML encoding serve different purposes:</p>
+                    <p><strong>URL Encoding:</strong> Used to encode characters in URLs to ensure they are transmitted correctly over the internet. It replaces unsafe characters with a "%" followed by two hexadecimal digits (e.g., space becomes %20).</p>
+                    <p><strong>HTML Encoding:</strong> Used to display special characters in HTML content. It replaces special characters with HTML entities (e.g., &lt; becomes &amp;lt;).</p>
+                    <p>While both encoding methods serve to escape special characters, they are used in different contexts and follow different rules.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    When should I decode a URL?
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>You should decode a URL when:</p>
+                    <ul>
+                        <li>You receive encoded data from a URL and need to process or display it in its original form</li>
+                        <li>You're debugging issues with URL parameters</li>
+                        <li>You're analyzing URLs from logs or analytics data</li>
+                        <li>You need to extract information from encoded query parameters</li>
+                    </ul>
+                    <p>Most web frameworks and server-side languages automatically decode URL parameters, but there are cases where you need to manually decode URLs, especially when working with raw URL strings.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Does URL encoding affect SEO?
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, URL encoding can affect SEO in several ways:</p>
+                    <ul>
+                        <li>Search engines prefer clean, readable URLs. Heavily encoded URLs may be less user-friendly and potentially impact click-through rates.</li>
+                        <li>While search engines can handle encoded URLs, it's generally better to use URL-friendly characters when possible.</li>
+                        <li>For international SEO, proper encoding of non-ASCII characters is essential.</li>
+                    </ul>
+                    <p>Best practices include using hyphens instead of spaces in URLs, avoiding unnecessary special characters, and using proper encoding when special characters are needed.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Is URL encoding the same across all programming languages?
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>While the basic concept of URL encoding is standardized (RFC 3986), there can be slight differences in implementation across programming languages:</p>
+                    <ul>
+                        <li>Some languages may encode different sets of characters by default</li>
+                        <li>Handling of spaces might differ (some use + instead of %20)</li>
+                        <li>Encoding of non-ASCII characters can vary, especially with different character encodings</li>
+                    </ul>
+                    <p>Most modern programming languages provide functions for URL encoding that follow the standards, such as <code>encodeURIComponent()</code> in JavaScript, <code>urllib.parse.quote()</code> in Python, and <code>URLEncoder.encode()</code> in Java.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <h3>URL Encoder & Decoder Tool</h3>
+            <p>A free online tool to encode and decode URLs for safe transmission across the web.</p>
+            
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+            
+            <p>&copy; 2025 URL Encoder & Decoder Tool. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <div class="notification" id="notification"></div>
+    
+    <script>
+        // DOM Elements
+        const inputText = document.getElementById('input-text');
+        const outputText = document.getElementById('output-text');
+        const encodeBtn = document.getElementById('encode-btn');
+        const decodeBtn = document.getElementById('decode-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const copyBtn = document.getElementById('copy-btn');
+        const sampleBtn = document.getElementById('sample-btn');
+        const notification = document.getElementById('notification');
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        // Encode function
+        encodeBtn.addEventListener('click', () => {
+            const input = inputText.value.trim();
+            
+            if (!input) {
+                showNotification('Please enter a URL or text to encode', 'error');
+                return;
+            }
+            
+            try {
+                const encoded = encodeURIComponent(input);
+                outputText.value = encoded;
+                
+                // Track usage for analytics (if implemented)
+                trackEvent('encode', 'success');
+            } catch (error) {
+                showNotification('Error encoding text: ' + error.message, 'error');
+                trackEvent('encode', 'error');
+            }
+        });
+        
+        // Decode function
+        decodeBtn.addEventListener('click', () => {
+            const input = inputText.value.trim();
+            
+            if (!input) {
+                showNotification('Please enter a URL or text to decode', 'error');
+                return;
+            }
+            
+            try {
+                const decoded = decodeURIComponent(input);
+                outputText.value = decoded;
+                
+                // Track usage for analytics (if implemented)
+                trackEvent('decode', 'success');
+            } catch (error) {
+                showNotification('Error decoding text: ' + error.message, 'error');
+                trackEvent('decode', 'error');
+            }
+        });
+        
+        // Clear function
+        clearBtn.addEventListener('click', () => {
+            inputText.value = '';
+            outputText.value = '';
+            inputText.focus();
+        });
+        
+        // Copy function
+        copyBtn.addEventListener('click', () => {
+            if (!outputText.value) {
+                showNotification('No output to copy', 'error');
+                return;
+            }
+            
+            copyToClipboard(outputText.value);
+        });
+        
+        // Load sample data
+        sampleBtn.addEventListener('click', () => {
+            inputText.value = 'https://example.com/search?query=special characters&category=web development&tags=url,encoding,special chars';
+            encodeBtn.click();
+        });
+        
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            if (!text) return;
+            
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    showNotification('Copied to clipboard!', 'success');
+                })
+                .catch(err => {
+                    showNotification('Failed to copy: ' + err, 'error');
+                });
+        }
+        
+        // Show notification
+        function showNotification(message, type) {
+            notification.textContent = message;
+            notification.className = 'notification ' + type + ' show';
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Analytics tracking (placeholder function)
+        function trackEvent(action, status) {
+            // This would be replaced with actual analytics code
+            console.log(`Event tracked: ${action} - ${status}`);
+        }
+        
+        // FAQ accordion
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                faqItems.forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't already open
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+        
+        // Add keyboard accessibility
+        inputText.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                encodeBtn.click();
+            }
+        });
+        
+        // URL validation helper (basic validation)
+        function isValidUrl(url) {
+            try {
+                new URL(url);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+        
+        // Add real-time validation feedback
+        inputText.addEventListener('input', () => {
+            const input = inputText.value.trim();
+            if (input && isValidUrl(input)) {
+                inputText.style.borderColor = 'var(--success)';
+            } else {
+                inputText.style.borderColor = input ? 'var(--border)' : 'var(--border)';
+            }
+        });
+        
+        // Add service worker for offline functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js').then(registration => {
+                    console.log('ServiceWorker registration successful');
+                }).catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
