@@ -94,6 +94,33 @@
         padding: 2rem;
         margin-bottom: 3rem;
       }
+      
+      .tool-container-h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+      }
+      .tool-container-p {
+          text-align: center;
+          margin-top: 1rem;
+          margin-bottom: 2rem;
+      }
+      
+      .section-header h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+        font-size: 2rem;
+    
+}
+
+.section-header p {
+    text-align: center;
+    color: var(--text-light);
+    margin-top: -1.5rem;
+    margin-bottom: 2rem;
+    padding: 0 100px;
+}
+
 
       .input-group {
         margin-bottom: 1.5rem;
@@ -493,6 +520,23 @@
           display: none; /* Hide hostname on mobile */
         }
       }
+      
+      .code-content {
+  display: none;
+}
+
+.code-content.active {
+  display: block;
+}
+.code-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}
+.code-tab.active {
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+}
     </style>
   </head>
   <body>
@@ -565,6 +609,10 @@
         </div>
       </section>
       
+      <div class="section-header">
+        <h2 >The Fundamentals of URL Encoding</h2>
+        <p>URL encoding is the key to creating reliable, appropriate links. Whether you're a web developer, SEO expert, or digital marketer, our free tool makes it easy to translate special characters in URLs while keeping your links working.</p>    
+      </div>
       <section class="tool-container" id="encoder">
         <div class="input-group">
           <label for="input-text">
@@ -628,6 +676,81 @@ URL decoding reverses the encoding process by returning encoded characters to th
             <li>Consistently employ lowercase letters.</li>
           </ul>
         </div>
+      </section>
+      
+      <div class="section-header">
+        <h2 >Encoding URLs in Different Programming Languages</h2>
+      </div>
+      <section class="tool-container">
+          <div class="code-examples">
+                    <div class="code-tabs" >
+                        <button class="code-tab active" data-tab="javascript">JavaScript</button>
+                        <button class="code-tab" data-tab="php">PHP</button>
+                        <button class="code-tab" data-tab="python">Python</button>
+                        <button class="code-tab" data-tab="java">Java</button>
+                    </div>
+                    
+                    <div class="code-content active" id="javascript-code">
+                        <pre><code>// Encoding a string in JavaScript
+const rawString = "Hello World! Special chars: &?=";
+const encodedString = encodeURIComponent(rawString);
+console.log(encodedString);
+// Output: Hello%20World%21%20Special%20chars%3A%20%26%3F%3D
+
+// Decoding a string in JavaScript
+const decodedString = decodeURIComponent(encodedString);
+console.log(decodedString);
+// Output: Hello World! Special chars: &?=</code></pre>
+                    </div>
+                    
+                    <div class="code-content" id="php-code">
+                        <pre><code>// Encoding a string in PHP
+$rawString = "Hello World! Special chars: &?=";
+$encodedString = urlencode($rawString);
+echo $encodedString;
+// Output: Hello+World%21+Special+chars%3A+%26%3F%3D
+
+// Decoding a string in PHP
+$decodedString = urldecode($encodedString);
+echo $decodedString;
+// Output: Hello World! Special chars: &?=</code></pre>
+                    </div>
+                    
+                    <div class="code-content" id="python-code">
+                        <pre><code># Encoding a string in Python
+import urllib.parse
+
+raw_string = "Hello World! Special chars: &?="
+encoded_string = urllib.parse.quote(raw_string)
+print(encoded_string)
+# Output: Hello%20World%21%20Special%20chars%3A%20%26%3F%3D
+
+# Decoding a string in Python
+decoded_string = urllib.parse.unquote(encoded_string)
+print(decoded_string)
+# Output: Hello World! Special chars: &?=</code></pre>
+                    </div>
+                    
+                    <div class="code-content" id="java-code">
+                        <pre><code>// Encoding a string in Java
+import java.net.URLEncoder;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+
+public class URLEncodingExample {
+    public static void main(String[] args) throws Exception {
+        String rawString = "Hello World! Special chars: &?=";
+        String encodedString = URLEncoder.encode(rawString, StandardCharsets.UTF_8.toString());
+        System.out.println(encodedString);
+        // Output: Hello+World%21+Special+chars%3A+%26%3F%3D
+        
+        String decodedString = URLDecoder.decode(encodedString, StandardCharsets.UTF_8.toString());
+        System.out.println(decodedString);
+        // Output: Hello World! Special chars: &?=
+    }
+}</code></pre>
+                    </div>
+                </div>
       </section>
       
       <section class="faq-section" id="faq">
@@ -1827,6 +1950,26 @@ URL decoding reverses the encoding process by returning encoded characters to th
       
       // Keep all your existing JavaScript
     </script>
+    
+    <script>
+  const tabs = document.querySelectorAll('.code-tab');
+  const contents = document.querySelectorAll('.code-content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Remove active class from all tabs and contents
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
+
+      // Add active class to the clicked tab
+      tab.classList.add('active');
+
+      // Show the corresponding content div
+      const selected = tab.getAttribute('data-tab');
+      document.getElementById(`${selected}-code`).classList.add('active');
+    });
+  });
+</script>
 
   </body>
 </html>
