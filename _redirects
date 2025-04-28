@@ -1,7 +1,0 @@
-# Force HTTPS+WWW (Canonical URL)
-http://urlencoderdecoder.com/* https://www.urlencoderdecoder.com/:splat 301!
-https://urlencoderdecoder.com/* https://www.urlencoderdecoder.com/:splat 301!
-http://www.urlencoderdecoder.com/* https://www.urlencoderdecoder.com/:splat 301!
-
-# Homepage redirect (optional)
-/ https://www.urlencoderdecoder.com/ 301!
