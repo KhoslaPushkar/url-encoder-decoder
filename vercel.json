@@ -1,0 +1,26 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "urlencoderdecoder.com"
+        }
+      ],
+      "destination": "https://www.urlencoderdecoder.com",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.urlencoderdecoder.com"
+        }
+      ],
+      "destination": "https://www.urlencoderdecoder.com",
+      "permanent": true
+    }
+  ]
+}
