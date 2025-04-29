@@ -2,7 +2,7 @@
   "version": 2,
   "redirects": [
     {
-      "source": ":path*",
+      "source": "/:path*",
       "destination": "https://www.urlencoderdecoder.com/:path*",
       "permanent": true,
       "has": [
@@ -13,32 +13,13 @@
       ]
     },
     {
-      "source": ":path*",
+      "source": "/:path*",
       "destination": "https://www.urlencoderdecoder.com/:path*",
       "permanent": true,
       "has": [
-        {
-          "type": "scheme",
-          "value": "http"
-        },
         {
           "type": "host",
           "value": "www.urlencoderdecoder.com"
-        }
-      ]
-    },
-    {
-      "source": ":path*",
-      "destination": "https://www.urlencoderdecoder.com/:path*",
-      "permanent": true,
-      "has": [
-        {
-          "type": "host",
-          "value": "urlencoderdecoder.com"
-        },
-        {
-          "type": "scheme",
-          "value": "https"
         }
       ]
     }
