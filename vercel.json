@@ -1,7 +1,6 @@
 {
   "version": 2,
   "redirects": [
-    // 1. Redirect root domain (http/https) → https://www
     {
       "source": ":path*",
       "destination": "https://www.urlencoderdecoder.com/:path*",
@@ -13,7 +12,6 @@
         }
       ]
     },
-    // 2. Redirect http://www → https://www
     {
       "source": ":path*",
       "destination": "https://www.urlencoderdecoder.com/:path*",
@@ -29,7 +27,6 @@
         }
       ]
     },
-    // 3. (Optional) Catch https://non-www → https://www (strict canonicalization)
     {
       "source": ":path*",
       "destination": "https://www.urlencoderdecoder.com/:path*",
