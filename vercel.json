@@ -11,17 +11,6 @@
           "value": "urlencoderdecoder.com"
         }
       ]
-    },
-    {
-      "source": "/:path*",
-      "destination": "https://www.urlencoderdecoder.com/:path*",
-      "permanent": true,
-      "has": [
-        {
-          "type": "host",
-          "value": "www.urlencoderdecoder.com"
-        }
-      ]
     }
   ]
 }
