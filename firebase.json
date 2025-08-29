@@ -26,13 +26,6 @@
           }
         ]
       }
-    ],
-    "redirects": [
-      {
-        "source": "/**",
-        "destination": "https://urlencoderdecoder.com/**",
-        "type": 301
-      }
     ]
   }
 }
