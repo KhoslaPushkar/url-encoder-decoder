@@ -711,27 +711,7 @@ encoded = quote(text.encode('utf-8'))
         </main>
     </div>
     
-    <footer>
-        <div class="footer-content">
-            <h3>URL Encoder Decoder Tool</h3>
-            <p>A free web application for encoding and decoding URLs for secure internet transmission.</p>
-            <div class="footer-links">
-                <a href="../index.html">Home</a>
-                <a href="../blog.html">Blog</a>
-                <a href="../about.html">About Us</a>
-                <a href="../contact.html">Contact</a>
-                <a href="../privacy.html">Privacy Policy</a>
-                <a href="../terms.html">Terms of Service</a>
-            </div>
-            <br>
-            <p style="color: white;">
-                All rights reserved. &copy; 2025
-                <a href="https://urlencoderdecoder.com/" style="color: white;">
-                    URL Encoder & Decoder Tool.
-                </a>
-            </p>
-        </div>
-    </footer>
+    <div id="footer"></div>
     
     <script>
         // Mobile menu toggle
@@ -771,5 +751,18 @@ encoded = quote(text.encode('utf-8'))
             block.style.cursor = 'pointer';
         });
     </script>
+	<script>
+  function loadComponent(id, file) {
+    fetch(file)
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+      })
+      .catch(err => console.error(`Failed to load ${file}:`, err));
+  }
+
+  loadComponent("header", "header.html");
+  loadComponent("footer", "footer.html");
+</script>
 </body>
 </html>
