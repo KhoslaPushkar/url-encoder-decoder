@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - URL Encoder Decoder Data Protection</title>
+    <meta name="description" content="Read our Privacy Policy to understand how URL Encoder Decoder protects your data and respects your privacy when using our tools.">
+    <meta name="keywords" content="privacy policy, data protection, URL encoder decoder privacy, data security, GDPR">
+    <link rel="canonical" href="https://urlencoderdecoder.com/privacy.html">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Privacy Policy - URL Encoder Decoder Data Protection" />
+    <meta property="og:description" content="Read our Privacy Policy to understand how URL Encoder Decoder protects your data and respects your privacy." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://urlencoderdecoder.com/privacy.html" />
+    <meta property="og:image" content="https://urlencoderdecoder.com/favicon_io/favicon-32x32.png" />
+    <meta property="og:site_name" content="URL Encoder Decoder" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Privacy Policy - URL Encoder Decoder Data Protection" />
+    <meta name="twitter:description" content="Read our Privacy Policy to understand how URL Encoder Decoder protects your data and respects your privacy." />
+    <meta name="twitter:image" content="https://urlencoderdecoder.com/favicon_io/favicon-32x32.png" />
+    
+    <style>
+      :root {
+        --primary: #6366f1;
+        --primary-dark: #4f46e5;
+        --secondary: #f97316;
+        --text: #1e293b;
+        --text-light: #64748b;
+        --background: #ffffff;
+        --background-alt: #f8fafc;
+        --border: #e2e8f0;
+        --success: #10b981;
+        --error: #ef4444;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: var(--background-alt);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .main-container {
+        flex: 1;
+      }
+
+      header {
+        background: linear-gradient(135deg, #0d0d0d, var(--primary-dark));
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .hero {
+        padding: 3rem 1rem;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--text-light);
+        max-width: 800px;
+        margin: 0 auto 2rem;
+      }
+
+      /* Cursor-inspired Header Styles */
+      .cursor-header {
+        background-color: #0A0A14;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 0.5rem 1.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .logo {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: white;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .logo:hover {
+        opacity: 0.9;
+      }
+
+      .nav-items {
+        display: flex;
+        gap: 1.25rem;
+      }
+
+      .nav-item {
+        color: rgba(255, 255, 255);
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        position: relative;
+        padding: 0.5rem 0;
+        text-decoration: none;
+      }
+
+      .nav-item:hover {
+        color: white;
+      }
+
+      .nav-item.active {
+        color: white;
+      }
+
+      .nav-item.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--primary);
+        border-radius: 2px;
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .hostname-badge {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        padding: 0.35rem 0.8rem;
+        font-size: 0.8rem;
+        font-family: 'SF Mono', 'Roboto Mono', monospace;
+        color: rgba(255, 255, 255, 0.9);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .hostname-badge:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      /* Policy content */
+      .policy-container {
+        margin: 4rem 0;
+      }
+      
+      .policy-content {
+        background: var(--background);
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+      }
+      
+      .policy-content h2 {
+        margin: 2rem 0 1rem;
+        color: var(--primary);
+      }
+      
+      .policy-content h2:first-child {
+        margin-top: 0;
+      }
+      
+      .policy-content h3 {
+        margin: 1.5rem 0 0.75rem;
+        color: var(--text);
+      }
+      
+      .policy-content p {
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      
+      .policy-content ul {
+        margin-left: 20px;
+        margin-bottom: 1.5rem;
+      }
+      
+      .policy-content li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+      }
+      
+      .policy-content .last-updated {
+        font-style: italic;
+        color: var(--text-light);
+        border-top: 1px solid var(--border);
+        padding-top: 1rem;
+        margin-top: 2rem;
+      }
+      
+      footer {
+        background: linear-gradient(135deg, #0d0d0d, var(--primary-dark));
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+        margin-top: auto;
+      }
+
+      .footer-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--secondary);
+      }
+
+      /* Mobile menu */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Responsive styles */
+      @media (max-width: 768px) {
+        .cursor-header {
+          padding: 0.5rem 1rem;
+        }
+        
+        .nav-items {
+          display: none;
+        }
+        
+        .hostname-badge {
+          display: none;
+        }
+        
+        .mobile-menu-btn {
+          display: block;
+        }
+        
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+        
+        /* Mobile menu open state */
+        .nav-items.mobile-open {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: #0A0A14;
+          padding: 1rem;
+          gap: 0;
+        }
+        
+        .nav-items.mobile-open .nav-item {
+          padding: 0.75rem 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 1.75rem;
+        }
+        
+        .footer-links {
+          flex-direction: column;
+          gap: 1rem;
+        }
+      }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <header class="cursor-header">
+            <div class="header-left">
+                <a href="index.html" class="logo">urlencoderdecoder.com</a>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+                <div class="nav-items" id="nav-items">
+                    <a href="index.html" class="nav-item">Home</a>
+                    <a href="blog.html" class="nav-item">Blog</a>
+                    <a href="about.html" class="nav-item">About</a>
+                    <a href="contact.html" class="nav-item">Contact</a>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="hostname-badge">urlencoderdecoder.com</div>
+            </div>
+        </header>
+        
+        <main class="container">
+            <section class="hero">
+                <h1>Privacy Policy</h1>
+                <p>Learn how we protect your data and respect your privacy when using our URL encoding and decoding tools.</p>
+            </section>
+            
+            <section class="policy-container">
+                <div class="policy-content">
+                    <p>At URL Encoder Decoder, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your information when you use our website and tools.</p>
+                    
+                    <h2>Information We Collect</h2>
+                    <p>We designed our tools to respect your privacy. Here's what we collect:</p>
+                    
+                    <h3>Information You Provide</h3>
+                    <p>When you use our URL encoding/decoding tools:</p>
+                    <ul>
+                        <li>We process the URLs and text you input for encoding/decoding</li>
+                        <li>This processing happens entirely in your browser - we don't send your data to our servers</li>
+                        <li>We don't store the content you process in our databases</li>
+                    </ul>
+                    
+                    <h3>Automatically Collected Information</h3>
+                    <p>When you visit our website, we may collect:</p>
+                    <ul>
+                        <li>Your IP address</li>
+                        <li>Browser type and version</li>
+                        <li>Pages you visit and time spent on them</li>
+                        <li>Referring website addresses</li>
+                        <li>Other standard web analytics data</li>
+                    </ul>
+                    
+                    <h2>How We Use Your Information</h2>
+                    <p>We use the information we collect to:</p>
+                    <ul>
+                        <li>Provide and improve our URL encoding/decoding services</li>
+                        <li>Understand how visitors use our website</li>
+                        <li>Monitor and prevent technical issues</li>
+                        <li>Comply with legal obligations</li>
+                    </ul>
+                    
+                    <h2>Data Processing and Storage</h2>
+                    <p>Our URL encoding/decoding tools work entirely client-side:</p>
+                    <ul>
+                        <li>Your data is processed in your web browser</li>
+                        <li>We don't transmit your input data to our servers</li>
+                        <li>We don't store the content you process</li>
+                    </ul>
+                    
+                    <p>For web analytics, we may use services like Google Analytics that collect standard usage data. This data is aggregated and anonymized.</p>
+                    
+                    <h2>Cookies and Tracking Technologies</h2>
+                    <p>We may use cookies and similar technologies to:</p>
+                    <ul>
+                        <li>Remember your preferences</li>
+                        <li>Analyze website traffic and usage patterns</li>
+                        <li>Improve our services</li>
+                    </ul>
+                    
+                    <p>You can control cookies through your browser settings. However, disabling cookies may affect your experience on our website.</p>
+                    
+                    <h2>Third-Party Services</h2>
+                    <p>We may use third-party services that collect information:</p>
+                    <ul>
+                        <li>Google Analytics for website analytics</li>
+                        <li>Cloudflare for security and performance</li>
+                        <li>Other services that help us operate our website</li>
+                    </ul>
+                    
+                    <p>These services have their own privacy policies governing how they use information.</p>
+                    
+                    <h2>Data Security</h2>
+                    <p>We implement appropriate security measures to protect your information:</p>
+                    <ul>
+                        <li>SSL encryption for all data transmission</li>
+                        <li>Regular security assessments</li>
+                        <li>Limited access to collected data</li>
+                    </ul>
+                    
+                    <p>However, no method of transmission over the Internet is 100% secure. While we strive to protect your information, we cannot guarantee absolute security.</p>
+                    
+                    <h2>Your Rights</h2>
+                    <p>Depending on your location, you may have certain rights regarding your personal information:</p>
+                    <ul>
+                        <li>Right to access your information</li>
+                        <li>Right to correct inaccurate information</li>
+                        <li>Right to delete your information</li>
+                        <li>Right to restrict processing of your information</li>
+                        <li>Right to data portability</li>
+                        <li>Right to object to processing</li>
+                    </ul>
+                    
+                    <p>To exercise these rights, please contact us at <a href="mailto:privacy@urlencoderdecoder.com">privacy@urlencoderdecoder.com</a>.</p>
+                    
+                    <h2>Children's Privacy</h2>
+                    <p>Our website is not intended for children under 13. We do not knowingly collect personal information from children under 13. If you believe we have collected information from a child under 13, please contact us immediately.</p>
+                    
+                    <h2>Changes to This Policy</h2>
+                    <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the "Last Updated" date.</p>
+                    
+                    <h2>Contact Us</h2>
+                    <p>If you have questions about this Privacy Policy or our data practices, please contact us at:</p>
+                    <p>Email: <a href="mailto:privacy@urlencoderdecoder.com">privacy@urlencoderdecoder.com</a></p>
+                    
+                    <p class="last-updated">Last Updated: September 11, 2025</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <h3>URL Encoder Decoder Tool</h3>
+            <p>A free web application for encoding and decoding URLs for secure internet transmission.</p>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            <br>
+            <p style="color: white;">
+                All rights reserved. &copy; 2025
+                <a href="https://urlencoderdecoder.com/" style="color: white;">
+                    URL Encoder & Decoder Tool.
+                </a>
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navItems = document.getElementById('nav-items');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navItems.classList.toggle('mobile-open');
+        });
+    </script>
+</body>
+</html>

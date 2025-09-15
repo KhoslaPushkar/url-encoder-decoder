@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - URL Encoder Decoder Team & Mission</title>
+    <meta name="description" content="Learn about the URL Encoder Decoder team, our mission to simplify web development, and our commitment to providing free, high-quality tools for developers.">
+    <meta name="keywords" content="about URL encoder decoder, our mission, web development tools, free online tools, developer resources">
+    <link rel="canonical" href="https://urlencoderdecoder.com/about.html">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="About Us - URL Encoder Decoder Team & Mission" />
+    <meta property="og:description" content="Learn about the URL Encoder Decoder team and our mission to simplify web development with free, high-quality tools." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://urlencoderdecoder.com/about.html" />
+    <meta property="og:image" content="https://urlencoderdecoder.com/favicon_io/favicon-32x32.png" />
+    <meta property="og:site_name" content="URL Encoder Decoder" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="About Us - URL Encoder Decoder Team & Mission" />
+    <meta name="twitter:description" content="Learn about the URL Encoder Decoder team and our mission to simplify web development with free, high-quality tools." />
+    <meta name="twitter:image" content="https://urlencoderdecoder.com/favicon_io/favicon-32x32.png" />
+    
+    <style>
+      :root {
+        --primary: #6366f1;
+        --primary-dark: #4f46e5;
+        --secondary: #f97316;
+        --text: #1e293b;
+        --text-light: #64748b;
+        --background: #ffffff;
+        --background-alt: #f8fafc;
+        --border: #e2e8f0;
+        --success: #10b981;
+        --error: #ef4444;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: var(--background-alt);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .main-container {
+        flex: 1;
+      }
+
+      header {
+        background: linear-gradient(135deg, #0d0d0d, var(--primary-dark));
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .hero {
+        padding: 3rem 1rem;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--text-light);
+        max-width: 800px;
+        margin: 0 auto 2rem;
+      }
+
+      .section-header h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+      }
+
+      .section-header p {
+        text-align: center;
+        color: var(--text-light);
+        margin-top: -1.5rem;
+        margin-bottom: 2rem;
+        padding: 0 100px;
+      }
+
+      /* Cursor-inspired Header Styles */
+      .cursor-header {
+        background-color: #0A0A14;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 0.5rem 1.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .logo {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: white;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .logo:hover {
+        opacity: 0.9;
+      }
+
+      .nav-items {
+        display: flex;
+        gap: 1.25rem;
+      }
+
+      .nav-item {
+        color: rgba(255, 255, 255);
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        position: relative;
+        padding: 0.5rem 0;
+        text-decoration: none;
+      }
+
+      .nav-item:hover {
+        color: white;
+      }
+
+      .nav-item.active {
+        color: white;
+      }
+
+      .nav-item.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--primary);
+        border-radius: 2px;
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .hostname-badge {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        padding: 0.35rem 0.8rem;
+        font-size: 0.8rem;
+        font-family: 'SF Mono', 'Roboto Mono', monospace;
+        color: rgba(255, 255, 255, 0.9);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .hostname-badge:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .action-button {
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      .action-button:hover {
+        background: var(--primary-dark);
+      }
+
+      /* About section */
+      .about-container {
+        margin: 4rem 0;
+      }
+      
+      .about-content {
+        background: var(--background);
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+      }
+      
+      .about-content h3 {
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+      
+      .about-content p {
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+      }
+      
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+      
+      .value-card {
+        background: var(--background);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        text-align: center;
+      }
+      
+      .value-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background-color: rgba(99, 102, 241, 0.1);
+        border-radius: 50%;
+        margin-bottom: 1rem;
+      }
+      
+      .value-icon svg {
+        width: 30px;
+        height: 30px;
+        color: var(--primary);
+      }
+      
+      .value-card h3 {
+        margin-bottom: 0.75rem;
+        font-size: 1.25rem;
+      }
+      
+      footer {
+        background: linear-gradient(135deg, #0d0d0d, var(--primary-dark));
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+        margin-top: auto;
+      }
+
+      .footer-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--secondary);
+      }
+
+      /* Mobile menu */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Responsive styles */
+      @media (max-width: 768px) {
+        .section-header p {
+          padding: 0 1rem;
+        }
+        
+        .cursor-header {
+          padding: 0.5rem 1rem;
+        }
+        
+        .nav-items {
+          display: none;
+        }
+        
+        .hostname-badge {
+          display: none;
+        }
+        
+        .mobile-menu-btn {
+          display: block;
+        }
+        
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+        
+        /* Mobile menu open state */
+        .nav-items.mobile-open {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: #0A0A14;
+          padding: 1rem;
+          gap: 0;
+        }
+        
+        .nav-items.mobile-open .nav-item {
+          padding: 0.75rem 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 1.75rem;
+        }
+        
+        .footer-links {
+          flex-direction: column;
+          gap: 1rem;
+        }
+      }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <header class="cursor-header">
+        <div class="header-left">
+          <a href="index.html" class="logo">urlencoderdecoder.com</a>
+          <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+        
+        <div class="header-right">
+          <div class="nav-items" id="nav-items">
+            <a href="index.html" class="nav-item active">Home</a>
+            <a href="about.html" class="nav-item">About</a>
+			<a href="blogs/blog.html" class="nav-item">Blog</a>
+            <a href="contact.html" class="nav-item">Contact</a>
+          </div>
+        </div>
+      </header>
+        
+        <main class="container">
+            <section class="hero">
+                <h1>About URL Encoder Decoder</h1>
+                <p>Discover our purpose to make web development simpler and offer free, quality tools to developers all over the world.</p>
+            </section>
+            
+            <section class="about-container" style="text-align: justify;">
+                <div class="about-content">
+                    <h3>Our Story</h3>
+                    <p>URL Encoder Decoder was created in 2025 by a group of professional web developers who saw the necessity for a free, easy, and safe tool to encode and decode URLs. We observed that developers would frequently wrestle with URL encoding problems that resulted in bugs, security issues, and compatibility issues.</p>
+                    
+                    <p>Our goal is to equip developers with tools necessary to work with URLs in an efficient and proper manner. We are of the opinion that every developer should access quality resources that can ease their work and make them more productive.</p>
+                </div>
+                
+                <div class="about-content">
+                    <h3>Our Mission</h3>
+                    <p>Our main objective at URL Encoder Decoder is to make web development easier by giving developers dependable, easily accessible, and totally free tools for effective URL manipulation. Our tools are made to eliminate complexity while saving valuable development time because we recognise that properly handling URLs is essential to creating safe and intuitive applications. We want to be a reliable resource for developers of all skill levels by making sure that every function runs accurately and consistently.</p>
+                    <p>We are dedicated to providing the developer community with clear training materials and best-practice guidelines, going beyond simply providing tools. In addition to ensuring functionality, proper URL encoding and decoding also preserves security, compatibility, and search engine optimisation. In order to assist developers in comprehending the fundamental ideas, avoiding typical pitfalls, and putting solutions into practice that adhere to industry standards, we work hard to offer instructional materials in addition to our tools.</p>
+					<p>In the future, we actively integrate user feedback and stay up to date with the most recent developments in the industry to continuously enhance and grow our platform. Our goal is to maintain a free and open environment where developers from all over the world can freely access top-notch resources. URL Encoder Decoder can help you improve your development experience and streamline your workflow, regardless of whether you're working on small personal projects or enterprise-level applications.</p>
+                </div>
+                
+                <div class="section-header">
+                    <h2>Our Values</h2>
+                    <p>The principles that guide everything we do</p>
+                </div>
+                
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h3>Accuracy</h3>
+                        <p>To guarantee dependable results, we give accuracy and adherence to standards top priority in all of our tools.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </div>
+                        <h3>Security</h3>
+                        <p>We consider security when designing our tools to ensure that all data is processed safely.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <h3>Community</h3>
+                        <p>We are committed to providing free, easily accessible tools and resources to the developer community.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>In order to help developers work more productively, we constantly enhance our tools and look for new approaches.</p>
+                    </div>
+                </div>
+                
+                <div class="about-content">
+                    <h3>Our Team</h3>
+                    <p>A committed group of web developers, security experts, and technical writers who are passionate about creating tools that facilitate and secure web development are responsible for maintaining URL Encoder Decoder. Our team's multidisciplinary experience ensures that every feature we release truly meets the needs of contemporary developers by fusing technical accuracy with useful usability.</p>
+                    
+                    <p>Despite the fact that our team members are spread out across various time zones, we all work towards the same goal, providing tools that are reliable, accessible, and of excellent quality. We are able to incorporate a variety of viewpoints and insights into our platform thanks to this international collaboration, which aids in the development of solutions that address a broad range of use cases. No matter where our team members are located, accuracy, consistency, and user satisfaction are our top priorities.</p>
+					<p>We also closely monitor the evolution of security practices and web standards. We make an effort to promptly adjust to any updates or new best practices so that our tools stay current and practical. Just as crucial is listening to user feedback, as many of the enhancements you see today are directly a result of suggestions we've received.</p>
+                </div>
+                
+                <div class="about-content">
+                    <h3>Join Our Community</h3>
+					<p>We are constantly seeking input, ideas, and contributions from our users. Please don't hesitate to <a href="contact.html" style="color: var(--primary);">contact us</a> to report a problem or offer suggestions for how we can make our tools better. </p>	
+                    
+					<p>By following our <a href="blog.html" style="color: var(--primary);">blog</a>, where we provide tutorials, industry insights, and best practices pertaining to URL encoding and web development, you can also stay up to date on the most recent advancements.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <div id="footer"></div>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navItems = document.getElementById('nav-items');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navItems.classList.toggle('mobile-open');
+        });
+    </script>
+	
+	<script>
+  function loadComponent(id, file) {
+    fetch(file)
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+      })
+      .catch(err => console.error(`Failed to load ${file}:`, err));
+  }
+
+  loadComponent("header", "header.html");
+  loadComponent("footer", "footer.html");
+</script>
+
+
+</body>
+</html>
