@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Encoding in JavaScript: encodeURIComponent() vs encodeURI() | URLEncoderDecoder</title>
+    <meta name="description" content="Deep dive into JavaScript's URL encoding functions. Learn the differences between encodeURIComponent() and encodeURI() and when to use each.">
+    <meta name="keywords" content="JavaScript URL encoding, encodeURIComponent, encodeURI, decodeURIComponent, JavaScript encoding functions">
+    <link rel="canonical" href="https://urlencoderdecoder.com/blog/javascript-url-encoding.html">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="URL Encoding in JavaScript: encodeURIComponent() vs encodeURI()" />
+    <meta property="og:description" content="Deep dive into JavaScript's URL encoding functions. Learn the differences between encodeURIComponent() and encodeURI() and when to use each." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://urlencoderdecoder.com/blog/javascript-url-encoding.html" />
+    <meta property="og:image" content="https://urlencoderdecoder.com/favicon_io/favicon-32x32.png" />
+    <meta property="og:site_name" content="URL Encoder Decoder" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="URL Encoding in JavaScript: encodeURIComponent() vs encodeURI()" />
+    <meta name="twitter:description" content="Deep dive into JavaScript's URL encoding functions. Learn the differences between encodeURIComponent() and encodeURI() and when to use each." />
+    <meta name="twitter:image" content="https://urlencoderdecoder.com/favicon_io/favicon-32x32.png" />
+    
+    <style>
+      :root {
+        --primary: #6366f1;
+        --primary-dark: #4f46e5;
+        --secondary: #f97316;
+        --text: #1e293b;
+        --text-light: #64748b;
+        --background: #ffffff;
+        --background-alt: #f8fafc;
+        --border: #e2e8f0;
+        --success: #10b981;
+        --error: #ef4444;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: var(--background-alt);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .main-container {
+        flex: 1;
+      }
+
+      header {
+        background: linear-gradient(135deg, #0d0d0d, var(--primary-dark));
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .hero {
+        padding: 3rem 1rem;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--text-light);
+        max-width: 800px;
+        margin: 0 auto 2rem;
+      }
+
+      /* Cursor-inspired Header Styles */
+      .cursor-header {
+        background-color: #0A0A14;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 0.5rem 1.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .logo {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: white;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .logo:hover {
+        opacity: 0.9;
+      }
+
+      .nav-items {
+        display: flex;
+        gap: 1.25rem;
+      }
+
+      .nav-item {
+        color: rgba(255, 255, 255);
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        position: relative;
+        padding: 0.5rem 0;
+        text-decoration: none;
+      }
+
+      .nav-item:hover {
+        color: white;
+      }
+
+      .nav-item.active {
+        color: white;
+      }
+
+      .nav-item.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--primary);
+        border-radius: 2px;
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .hostname-badge {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        padding: 0.35rem 0.8rem;
+        font-size: 0.8rem;
+        font-family: 'SF Mono', 'Roboto Mono', monospace;
+        color: rgba(255, 255, 255, 0.9);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .hostname-badge:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      /* Blog content */
+      .blog-container {
+        margin: 2rem 0;
+      }
+      
+      .blog-content {
+        background: var(--background);
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+      }
+      
+      .blog-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-light);
+        font-size: 0.9rem;
+      }
+      
+      .blog-category {
+        background: var(--primary);
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+      }
+      
+      .blog-content h2 {
+        margin: 2rem 0 1rem;
+        color: var(--primary);
+      }
+      
+      .blog-content h2:first-child {
+        margin-top: 0;
+      }
+      
+      .blog-content h3 {
+        margin: 1.5rem 0 0.75rem;
+        color: var(--text);
+      }
+      
+      .blog-content p {
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      
+      .blog-content ul, .blog-content ol {
+        margin-left: 20px;
+        margin-bottom: 1.5rem;
+      }
+      
+      .blog-content li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+      }
+      
+      .blog-content code {
+        background: var(--background-alt);
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-family: 'SF Mono', 'Roboto Mono', monospace;
+        font-size: 0.9rem;
+      }
+      
+      .code-block {
+        background: #2d2d2d;
+        color: #f8f8f2;
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        font-family: 'SF Mono', 'Roboto Mono', monospace;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+      
+      .code-block code {
+        background: transparent;
+        padding: 0;
+        color: inherit;
+      }
+      
+      .note {
+        background: rgba(99, 102, 241, 0.1);
+        border-left: 4px solid var(--primary);
+        padding: 1rem;
+        margin: 1.5rem 0;
+        border-radius: 4px;
+      }
+      
+      .warning {
+        background: rgba(239, 68, 68, 0.1);
+        border-left: 4px solid var(--error);
+        padding: 1rem;
+        margin: 1.5rem 0;
+        border-radius: 4px;
+      }
+      
+      .blog-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      
+      .blog-navigation a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      
+      .blog-navigation a:hover {
+        text-decoration: underline;
+      }
+      
+      .related-posts {
+        margin: 3rem 0;
+      }
+      
+      .related-posts h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: var(--text);
+      }
+      
+      .related-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+      
+      .related-card {
+        background: var(--background);
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+      }
+      
+      .related-card:hover {
+        transform: translateY(-5px);
+      }
+      
+      .related-card h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+      }
+      
+      .related-card a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      
+      .related-card a:hover {
+        text-decoration: underline;
+      }
+      
+      footer {
+        background: linear-gradient(135deg, #0d0d0d, var(--primary-dark));
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+        margin-top: auto;
+      }
+
+      .footer-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--secondary);
+      }
+
+      /* Mobile menu */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Responsive styles */
+      @media (max-width: 768px) {
+        .cursor-header {
+          padding: 0.5rem 1rem;
+        }
+        
+        .nav-items {
+          display: none;
+        }
+        
+        .hostname-badge {
+          display: none;
+        }
+        
+        .mobile-menu-btn {
+          display: block;
+        }
+        
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+        
+        /* Mobile menu open state */
+        .nav-items.mobile-open {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: #0A0A14;
+          padding: 1rem;
+          gap: 0;
+        }
+        
+        .nav-items.mobile-open .nav-item {
+          padding: 0.75rem 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blog-meta {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 1.75rem;
+        }
+        
+        .footer-links {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        
+        .blog-navigation {
+          flex-direction: column;
+          gap: 1rem;
+        }
+      }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <header class="cursor-header">
+            <div class="header-left">
+                <a href="../index.html" class="logo">urlencoderdecoder.com</a>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+                <div class="nav-items" id="nav-items">
+                    <a href="../index.html" class="nav-item">Home</a>
+                    <a href="../blog.html" class="nav-item">Blog</a>
+                    <a href="../about.html" class="nav-item">About</a>
+                    <a href="../contact.html" class="nav-item">Contact</a>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="hostname-badge">urlencoderdecoder.com</div>
+            </div>
+        </header>
+        
+        <main class="container">
+            <section class="hero">
+                <h1>URL Encoding in JavaScript</h1>
+                <p>Deep dive into JavaScript's URL encoding functions. Learn the differences between encodeURIComponent() and encodeURI() and when to use each.</p>
+            </section>
+            
+            <section class="blog-container">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">JavaScript</span>
+                        <span>September 1, 2025</span>
+                        <span>8 min read</span>
+                    </div>
+                    
+                    <h2>JavaScript's URL Encoding Functions</h2>
+                    <p>JavaScript provides two primary functions for URL encoding: <code>encodeURIComponent()</code> and <code>encodeURI()</code>. While they seem similar, they serve different purposes and encode different sets of characters.</p>
+                    
+                    <p>Understanding the difference between these functions is crucial for proper URL handling in JavaScript applications. Using the wrong function can lead to broken URLs, security vulnerabilities, or malformed requests.</p>
+                    
+                    <h2>encodeURIComponent() vs encodeURI(): Key Differences</h2>
+                    
+                    <h3>encodeURIComponent()</h3>
+                    <p>The <code>encodeURIComponent()</code> function encodes <strong>all</strong> characters except:</p>
+                    
+                    <div class="code-block">
+A-Z a-z 0-9 - _ . ! ~ * ' ( )
+                    </div>
+                    
+                    <p>This function is designed for encoding <strong>individual URI components</strong> like query parameters, fragment identifiers, or path segments. It encodes most special characters, including those that have special meaning in URLs.</p>
+                    
+                    <div class="code-block">
+// Example of encodeURIComponent()
+const param = "hello world & special=chars";
+const encoded = encodeURIComponent(param);
+console.log(encoded); 
+// Output: "hello%20world%20%26%20special%3Dchars"
+                    </div>
+                    
+                    <h3>encodeURI()</h3>
+                    <p>The <code>encodeURI()</code> function encodes <strong>fewer</strong> characters than encodeURIComponent(). It leaves intact characters that have special meaning in URLs:</p>
+                    
+                    <div class="code-block">
+A-Z a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #
+                    </div>
+                    
+                    <p>This function is designed for encoding <strong>complete URIs</strong> while preserving the URI structure. It doesn't encode characters that are used to separate different parts of a URL.</p>
+                    
+                    <div class="code-block">
+// Example of encodeURI()
+const url = "https://example.com/hello world?param=value&other=special chars";
+const encodedUrl = encodeURI(url);
+console.log(encodedUrl);
+// Output: "https://example.com/hello%20world?param=value&other=special%20chars"
+                    </div>
+                    
+                    <h2>When to Use Each Function</h2>
+                    
+                    <h3>Use encodeURIComponent() for:</h3>
+                    <ul>
+                        <li>Query parameter values</li>
+                        <li>Query parameter names</li>
+                        <li>Fragment identifiers</li>
+                        <li>Individual path segments</li>
+                        <li>Any string that will be used as part of a URL</li>
+                    </ul>
+                    
+                    <div class="code-block">
+// Correct usage: encoding query parameters
+const baseUrl = "https://example.com/search";
+const query = "javascript & web development";
+const category = "programming/how-to";
+
+const url = `${baseUrl}?q=${encodeURIComponent(query)}&cat=${encodeURIComponent(category)}`;
+console.log(url);
+// Output: "https://example.com/search?q=javascript%20%26%20web%20development&cat=programming%2Fhow-to"
+                    </div>
+                    
+                    <h3>Use encodeURI() for:</h3>
+                    <ul>
+                        <li>Complete URLs that you want to keep intact</li>
+                        <li>When you need to preserve the URL structure</li>
+                        <li>Encoding spaces in paths while keeping query parameters functional</li>
+                    </ul>
+                    
+                    <div class="code-block">
+// Correct usage: encoding a complete URL with spaces
+const path = "https://example.com/my page.html";
+const encodedPath = encodeURI(path);
+console.log(encodedPath);
+// Output: "https://example.com/my%20page.html"
+                    </div>
+                    
+                    <div class="warning">
+                        <p><strong>Warning:</strong> Never use encodeURI() for encoding query parameters or other URL components. It will not encode &, =, or ? characters, which can break your URL structure.</p>
+                    </div>
+                    
+                    <h2>Decoding Functions: decodeURIComponent() and decodeURI()</h2>
+                    <p>JavaScript also provides corresponding decoding functions:</p>
+                    
+                    <ul>
+                        <li><code>decodeURIComponent()</code> - Decodes strings encoded with encodeURIComponent()</li>
+                        <li><code>decodeURI()</code> - Decodes strings encoded with encodeURI()</li>
+                    </ul>
+                    
+                    <div class="code-block">
+// Encoding and decoding example
+const original = "hello world & special=chars";
+
+// Encoding
+const encoded = encodeURIComponent(original);
+console.log(encoded); // "hello%20world%20%26%20special%3Dchars"
+
+// Decoding
+const decoded = decodeURIComponent(encoded);
+console.log(decoded); // "hello world & special=chars"
+                    </div>
+                    
+                    <div class="note">
+                        <p><strong>Note:</strong> Always use the matching decode function for your encode function. Using decodeURI() on a string encoded with encodeURIComponent() may not properly decode all characters.</p>
+                    </div>
+                    
+                    <h2>Common Mistakes and How to Avoid Them</h2>
+                    
+                    <h3>Mistake 1: Using encodeURI() for query parameters</h3>
+                    <div class="code-block">
+// ❌ Wrong - using encodeURI() for query parameters
+const baseUrl = "https://example.com/search";
+const query = "value with & and =";
+const badUrl = `${baseUrl}?q=${encodeURI(query)}`;
+// Result: "https://example.com/search?q=value with & and ="
+// The & and = characters break the URL structure
+
+// ✅ Correct - using encodeURIComponent() for query parameters
+const goodUrl = `${baseUrl}?q=${encodeURIComponent(query)}`;
+// Result: "https://example.com/search?q=value%20with%20%26%20and%20%3D"
+                    </div>
+                    
+                    <h3>Mistake 2: Double encoding</h3>
+                    <div class="code-block">
+// ❌ Wrong - double encoding
+const text = "hello world";
+const doubleEncoded = encodeURIComponent(encodeURIComponent(text));
+// Result: "hello%2520world" instead of "hello%20world"
+
+// ✅ Correct - encode only once
+const singleEncoded = encodeURIComponent(text);
+// Result: "hello%20world"
+                    </div>
+                    
+                    <h3>Mistake 3: Not handling exceptions</h3>
+                    <div class="code-block">
+// ❌ Wrong - no error handling
+try {
+    const decoded = decodeURIComponent("%E0%A4%A"); // Invalid encoding
+} catch (e) {
+    console.error("Decoding failed:", e);
+}
+
+// ✅ Correct - with error handling
+function safeDecodeURIComponent(encoded) {
+    try {
+        return decodeURIComponent(encoded);
+    } catch (e) {
+        console.warn("Failed to decode, returning original:", encoded);
+        return encoded;
+    }
+}
+                    </div>
+                    
+                    <h2>Advanced Techniques</h2>
+                    
+                    <h3>Custom encoding function for specific needs</h3>
+                    <div class="code-block">
+// Custom encoding function that handles specific cases
+function customEncode(str) {
+    // First encode with encodeURIComponent
+    let encoded = encodeURIComponent(str);
+    
+    // Restore characters that don't need encoding in your specific case
+    encoded = encoded.replace(/%20/g, '+'); // Replace spaces with +
+    encoded = encoded.replace(/%2B/g, '+'); // Ensure + is preserved
+    
+    return encoded;
+}
+
+// Custom decoding function
+function customDecode(encoded) {
+    // Replace + with spaces before decoding
+    encoded = encoded.replace(/\+/g, '%20');
+    return decodeURIComponent(encoded);
+}
+                    </div>
+                    
+                    <h3>Handling Unicode characters</h3>
+                    <div class="code-block">
+// JavaScript handles Unicode characters automatically
+const unicodeText = "café résumé";
+const encodedUnicode = encodeURIComponent(unicodeText);
+console.log(encodedUnicode); // "caf%C3%A9%20r%C3%A9sum%C3%A9"
+
+const decodedUnicode = decodeURIComponent(encodedUnicode);
+console.log(decodedUnicode); // "café résumé"
+                    </div>
+                    
+                    <h2>Browser Compatibility</h2>
+                    <p>All modern browsers support <code>encodeURIComponent()</code>, <code>encodeURI()</code>, and their decoding counterparts. These functions have been part of JavaScript since ECMAScript 1st edition (1997).</p>
+                    
+                    <p>However, there are some subtle differences in how browsers handle invalid sequences:</p>
+                    
+                    <ul>
+                        <li>Modern browsers throw URIError for malformed URI sequences</li>
+                        <li>Older browsers might handle malformed sequences differently</li>
+                        <li>Always use try-catch when decoding user-provided input</li>
+                    </ul>
+                    
+                    <h2>Practical Examples</h2>
+                    
+                    <h3>Building a URL with query parameters</h3>
+                    <div class="code-block">
+function buildUrl(baseUrl, params) {
+    const queryString = Object.keys(params)
+        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+        .join('&');
+    
+    return `${baseUrl}?${queryString}`;
+}
+
+const params = {
+    q: "javascript tutorial",
+    page: "1",
+    sort: "relevance",
+    category: "web development"
+};
+
+const url = buildUrl("https://example.com/search", params);
+console.log(url);
+// Output: "https://example.com/search?q=javascript%20tutorial&page=1&sort=relevance&category=web%20development"
+                    </div>
+                    
+                    <h3>Parsing query parameters from a URL</h3>
+                    <div class="code-block">
+function parseQueryParams(url) {
+    const queryString = url.split('?')[1];
+    if (!queryString) return {};
+    
+    return queryString.split('&').reduce((params, pair) => {
+        const [key, value] = pair.split('=').map(decodeURIComponent);
+        params[key] = value;
+        return params;
+    }, {});
+}
+
+const testUrl = "https://example.com/search?q=javascript%20tutorial&page=1";
+const parsedParams = parseQueryParams(testUrl);
+console.log(parsedParams);
+// Output: {q: "javascript tutorial", page: "1"}
+                    </div>
+                    
+                    <div class="blog-navigation">
+                        <a href="complete-guide-url-encoding.html">&larr; Previous: Complete Guide to URL Encoding</a>
+                        <a href="url-encoding-security.html">Next: URL Encoding for Web Security &rarr;</a>
+                    </div>
+                </div>
+                
+                <div class="related-posts">
+                    <h2>Related Articles</h2>
+                    <div class="related-grid">
+                        <div class="related-card">
+                            <h3><a href="complete-guide-url-encoding.html">Complete Guide to URL Encoding</a></h3>
+                            <p>Learn everything about URL encoding, from basic concepts to advanced implementation techniques.</p>
+                        </div>
+                        <div class="related-card">
+                            <h3><a href="url-encoding-seo.html">How URL Encoding Affects SEO</a></h3>
+                            <p>Discover how proper URL encoding practices can improve your website's search engine rankings.</p>
+                        </div>
+                        <div class="related-card">
+                            <h3><a href="python-url-encoding.html">URL Encoding in Python</a></h3>
+                            <p>Learn how to handle URL encoding in Python using the urllib.parse module.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <h3>URL Encoder Decoder Tool</h3>
+            <p>A free web application for encoding and decoding URLs for secure internet transmission.</p>
+            <div class="footer-links">
+                <a href="../index.html">Home</a>
+                <a href="../blog.html">Blog</a>
+                <a href="../about.html">About Us</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../privacy.html">Privacy Policy</a>
+                <a href="../terms.html">Terms of Service</a>
+            </div>
+            <br>
+            <p style="color: white;">
+                All rights reserved. &copy; 2025
+                <a href="https://urlencoderdecoder.com/" style="color: white;">
+                    URL Encoder & Decoder Tool.
+                </a>
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navItems = document.getElementById('nav-items');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navItems.classList.toggle('mobile-open');
+        });
+        
+        // Add copy functionality to code blocks
+        document.querySelectorAll('.code-block').forEach(block => {
+            block.addEventListener('click', () => {
+                const text = block.textContent;
+                navigator.clipboard.writeText(text).then(() => {
+                    // Show temporary notification
+                    const notice = document.createElement('div');
+                    notice.textContent = 'Copied to clipboard!';
+                    notice.style.position = 'fixed';
+                    notice.style.bottom = '20px';
+                    notice.style.right = '20px';
+                    notice.style.background = 'var(--success)';
+                    notice.style.color = 'white';
+                    notice.style.padding = '0.5rem 1rem';
+                    notice.style.borderRadius = '4px';
+                    notice.style.zIndex = '1000';
+                    document.body.appendChild(notice);
+                    
+                    setTimeout(() => {
+                        document.body.removeChild(notice);
+                    }, 2000);
+                });
+            });
+            
+            // Add title to indicate click-to-copy
+            block.title = 'Click to copy';
+            block.style.cursor = 'pointer';
+        });
+        
+        // Interactive code examples
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add run buttons to code examples
+            const codeBlocks = document.querySelectorAll('.code-block');
+            codeBlocks.forEach(block => {
+                if (block.textContent.includes('console.log')) {
+                    const button = document.createElement('button');
+                    button.textContent = 'Run Code';
+                    button.style.marginTop = '10px';
+                    button.style.padding = '5px 10px';
+                    button.style.background = 'var(--primary)';
+                    button.style.color = 'white';
+                    button.style.border = 'none';
+                    button.style.borderRadius = '4px';
+                    button.style.cursor = 'pointer';
+                    
+                    button.addEventListener('click', function() {
+                        try {
+                            const code = block.textContent;
+                            // Extract console.log statements and evaluate
+                            if (code.includes('console.log')) {
+                                const logStatements = code.split('\n')
+                                    .filter(line => line.includes('console.log'))
+                                    .map(line => line.trim());
+                                
+                                logStatements.forEach(statement => {
+                                    // Create a safe evaluation context
+                                    const logMatch = statement.match(/console\.log\((.*)\)/);
+                                    if (logMatch) {
+                                        const expression = logMatch[1];
+                                        try {
+                                            // Use Function constructor for safe evaluation
+                                            const result = Function(`return ${expression}`)();
+                                            console.log(result);
+                                        } catch (e) {
+                                            console.error('Error evaluating:', expression, e);
+                                        }
+                                    }
+                                });
+                            }
+                        } catch (e) {
+                            console.error('Error running code:', e);
+                        }
+                    });
+                    
+                    block.parentNode.insertBefore(button, block.nextSibling);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

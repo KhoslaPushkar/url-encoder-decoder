@@ -1,0 +1,64 @@
+<header class="cursor-header">
+        <div class="header-left">
+          <a href="index.html" class="logo">urlencoderdecoder.com</a>
+          <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+        
+        <div class="header-right">
+          <div class="nav-items" id="nav-items">
+            <a href="https://urlencoderdecoder.com/index.html" class="nav-item active">Home</a>
+            <a href="https://urlencoderdecoder.com/about.html" class="nav-item">About</a>
+            <a href="https://urlencoderdecoder.com/blogs/blog.html" class="nav-item">Blog</a>
+            <div class="nav-item" data-section="encoder">Encoder</div>
+            <div class="nav-item" data-section="encoder">Decoder</div>
+            <div class="nav-item" data-section="faq">FAQ</div>
+            <a href="https://urlencoderdecoder.com/contact.html" class="nav-item">Contact</a>
+          </div>
+        </div>
+      </header>
+	  
+	  <script>
+// Function to set active menu item
+        function setActiveMenu() {
+            // Get current page URL
+            const currentUrl = window.location.href;
+            
+            // Get all navigation items
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            // Remove active class from all items
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Find and set active class for current page
+            navItems.forEach(item => {
+                if (item.href === currentUrl) {
+                    item.classList.add('active');
+                }
+            });
+        }
+        
+        // Simulate clicking on menu items for demonstration
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                }
+                
+                // Remove active class from all items
+                document.querySelectorAll('.nav-item').forEach(navItem => {
+                    navItem.classList.remove('active');
+                });
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Close mobile menu after selection
+                document.getElementById('nav-container').classList.remove('active');
+            });
+        });
+        
+        // Set active menu on page load
+        window.addEventListener('DOMContentLoaded', setActiveMenu);
+    </script>	  
