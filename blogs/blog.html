@@ -391,10 +391,10 @@
         
         <div class="header-right">
           <div class="nav-items" id="nav-items">
-            <a href="index.html" class="nav-item active">Home</a>
-            <a href="about.html" class="nav-item">About</a>
-			<a href="blogs/blog.html" class="nav-item">Blog</a>
-            <a href="contact.html" class="nav-item">Contact</a>
+            <a href="https://urlencoderdecoder.com/index.html" class="nav-item">Home</a>
+            <a href="https://urlencoderdecoder.com/about.html" class="nav-item">About</a>
+			<a href="https://urlencoderdecoder.com/blogs/blog.html" class="nav-item active">Blog</a>
+            <a href="https://urlencoderdecoder.com/contact.html" class="nav-item">Contact</a>
           </div>
         </div>
       </header>
@@ -509,27 +509,7 @@
         </main>
     </div>
     
-    <footer>
-        <div class="footer-content">
-            <h3>URL Encoder Decoder Tool</h3>
-            <p>A free web application for encoding and decoding URLs for secure internet transmission.</p>
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="blog.html">Blog</a>
-                <a href="about.html">About Us</a>
-                <a href="contact.html">Contact</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-            </div>
-            <br>
-            <p style="color: white;">
-                All rights reserved. &copy; 2025
-                <a href="https://urlencoderdecoder.com/" target="_blank" style="color: white;">
-                    URL Encoder & Decoder Tool.
-                </a>
-            </p>
-        </div>
-    </footer>
+    <div id="footer"></div>
     
     <script>
         // Mobile menu toggle
@@ -540,5 +520,18 @@
             navItems.classList.toggle('mobile-open');
         });
     </script>
+	<script>
+  function loadComponent(id, file) {
+    fetch(file)
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+      })
+      .catch(err => console.error(`Failed to load ${file}:`, err));
+  }
+
+  loadComponent("header", "header.html");
+  loadComponent("footer", "footer.html");
+</script>
 </body>
 </html>
