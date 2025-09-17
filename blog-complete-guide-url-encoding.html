@@ -7,23 +7,23 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="/favicon_io/site.webmanifest">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Encoding for Web Security: Preventing Injection Attacks | URLEncoderDecoder</title>
-    <meta name="description" content="Learn how proper URL encoding can protect your website from injection attacks and other security vulnerabilities. Essential security practices for developers.">
-    <meta name="keywords" content="URL encoding security, web security, injection attacks, XSS prevention, SQL injection, security best practices">
-    <link rel="canonical" href="https://urlencoderdecoder.com/blog/url-encoding-security.html">
+    <title>Complete Guide to URL Encoding: Best Practices for Developers | URLEncoderDecoder</title>
+    <meta name="description" content="Learn everything about URL encoding, from basic concepts to advanced implementation techniques across different programming languages. Master URL encoding best practices.">
+    <meta name="keywords" content="URL encoding, complete guide, percent encoding, URL encode, web development, JavaScript encodeURIComponent, Python urllib, PHP urlencode">
+    <link rel="canonical" href="https://urlencoderdecoder.com/blog/complete-guide-url-encoding.html">
     
     <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="URL Encoding for Web Security: Preventing Injection Attacks" />
-    <meta property="og:description" content="Learn how proper URL encoding can protect your website from injection attacks and other security vulnerabilities." />
+    <meta property="og:title" content="Complete Guide to URL Encoding: Best Practices for Developers" />
+    <meta property="og:description" content="Learn everything about URL encoding, from basic concepts to advanced implementation techniques across different programming languages." />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://urlencoderdecoder.com/blog/url-encoding-security.html" />
+    <meta property="og:url" content="https://urlencoderdecoder.com/blog/complete-guide-url-encoding.html" />
     <meta property="og:image" content="https://urlencoderdecoder.com/favicon_io/favicon-32x32.png" />
     <meta property="og:site_name" content="URL Encoder Decoder" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="URL Encoding for Web Security: Preventing Injection Attacks" />
-    <meta name="twitter:description" content="Learn how proper URL encoding can protect your website from injection attacks and other security vulnerabilities." />
+    <meta name="twitter:title" content="Complete Guide to URL Encoding: Best Practices for Developers" />
+    <meta name="twitter:description" content="Learn everything about URL encoding, from basic concepts to advanced implementation techniques across different programming languages." />
     <meta name="twitter:image" content="https://urlencoderdecoder.com/favicon_io/favicon-32x32.png" />
     
     <style>
@@ -285,14 +285,6 @@
         border-radius: 4px;
       }
       
-      .security-alert {
-        background: rgba(255, 193, 7, 0.1);
-        border-left: 4px solid #ffc107;
-        padding: 1rem;
-        margin: 1.5rem 0;
-        border-radius: 4px;
-      }
-      
       .blog-navigation {
         display: flex;
         justify-content: space-between;
@@ -337,7 +329,6 @@
       
       .related-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
       
       .related-card h3 {
@@ -476,7 +467,7 @@
           <div class="nav-items" id="nav-items">
             <a href="https://urlencoderdecoder.com/index.html" class="nav-item">Home</a>
             <a href="https://urlencoderdecoder.com/about.html" class="nav-item">About</a>
-			      <a href="https://urlencoderdecoder.com/blogs/blog.html" class="nav-item active">Blog</a>
+			      <a href="https://urlencoderdecoder.com/blog.html" class="nav-item active">Blog</a>
             <a href="https://urlencoderdecoder.com/contact.html" class="nav-item">Contact</a>
           </div>
         </div>
@@ -484,320 +475,217 @@
         
         <main class="container">
             <section class="hero">
-                <h1>URL Encoding for Web Security</h1>
-                <p>Learn how proper URL encoding can protect your website from injection attacks and other security vulnerabilities.</p>
+                <h1>Complete Guide to URL Encoding</h1>
+                <p>Learn everything about URL encoding, from basic concepts to advanced implementation techniques across different programming languages.</p>
             </section>
             
             <section class="blog-container">
                 <div class="blog-content">
                     <div class="blog-meta">
-                        <span class="blog-category">Security</span>
-                        <span>August 28, 2025</span>
-                        <span>9 min read</span>
+                        <span class="blog-category">Tutorial</span>
+                        <span>September 10, 2025</span>
+                        <span>10 min read</span>
                     </div>
                     
-                    <h2>The Security Importance of URL Encoding</h2>
-                    <p>URL encoding is not just about making URLs work correctly—it's a critical security practice that protects your web applications from various types of injection attacks. When implemented properly, URL encoding acts as a first line of defense against malicious input that could compromise your application.</p>
+                    <h2>What is URL Encoding?</h2>
+                    <p>URL encoding, also known as percent-encoding, is a mechanism for encoding information in a Uniform Resource Identifier (URI) under certain circumstances. It's used to represent characters that are not allowed in a URL or have special meaning, by replacing them with a "%" followed by two hexadecimal digits.</p>
                     
-                    <p>Attackers often exploit improperly encoded URLs to execute cross-site scripting (XSS), SQL injection, and other types of attacks. By understanding and implementing proper URL encoding practices, you can significantly reduce your application's attack surface.</p>
+                    <p>This encoding is necessary because URLs can only be sent over the Internet using the ASCII character set. Since URLs often contain characters outside the ASCII set, they must be converted into a valid ASCII format.</p>
                     
-                    <div class="security-alert">
-                        <p><strong>Security Note:</strong> URL encoding is just one layer of security. Always implement multiple security measures including input validation, output encoding, and proper authentication/authorization.</p>
-                    </div>
-                    
-                    <h2>Common Security Vulnerabilities from Improper Encoding</h2>
-                    
-                    <h3>1. Cross-Site Scripting (XSS)</h3>
-                    <p>XSS attacks occur when malicious scripts are injected into web pages viewed by other users. Improper URL encoding can facilitate XSS attacks:</p>
-                    
-                    <div class="code-block">
-// ❌ Vulnerable code - improper encoding
-const userInput = req.query.search; // Could be: <!--<script>alert('XSS')</script>-->
-document.getElementById('results').innerHTML = `Results for: ${userInput}`;
-
-// ✅ Secure code - proper encoding
-const userInput = req.query.search;
-const encodedInput = encodeURIComponent(userInput);
-document.getElementById('results').textContent = `Results for: ${encodedInput}`;
-                    </div>
-                    
-                    <h3>2. SQL Injection</h3>
-                    <p>SQL injection attacks exploit vulnerabilities in database queries. While URL encoding alone isn't sufficient to prevent SQL injection, it's part of a comprehensive defense strategy:</p>
-                    
-                    <div class="code-block">
-// ❌ Vulnerable code - SQL injection possible
-const userId = req.query.id; // Could be: 1; DROP TABLE users;
-const query = `SELECT * FROM users WHERE id = ${userId}`;
-
-// ✅ Secure code - parameterized queries + encoding
-const userId = encodeURIComponent(req.query.id);
-// Use parameterized queries instead of string concatenation
-const query = 'SELECT * FROM users WHERE id = ?';
-db.execute(query, [userId]);
-                    </div>
-                    
-                    <h3>3. HTTP Parameter Pollution</h3>
-                    <p>Attackers can manipulate URL parameters to bypass validation or access unauthorized resources:</p>
-                    
-                    <div class="code-block">
-// ❌ Vulnerable URL
-https://example.com/delete?id=1&id=2
-
-// If the application uses the first id parameter:
-// Deletes item with id=1
-// But if the server uses the last parameter:
-// Deletes item with id=2 (unintended)
-
-// ✅ Secure approach - validate and encode all parameters
-const id = encodeURIComponent(req.query.id);
-// Also validate that id is a single value and is authorized
-                    </div>
-                    
-                    <h2>Security Best Practices for URL Encoding</h2>
-                    
-                    <h3>1. Encode on Output, Not Just on Input</h3>
-                    <p>Encode data right before it's outputted to its final destination. This ensures that encoding is appropriate for the specific context:</p>
-                    
-                    <div class="code-block">
-// ❌ Encode too early - might not be appropriate for all contexts
-function processInput(input) {
-    const encoded = encodeURIComponent(input);
-    storeInDatabase(encoded); // Now stored encoded in DB
-    // Later might need to decode and re-encode for different context
-}
-
-// ✅ Encode at the point of use
-function processInput(input) {
-    storeInDatabase(input); // Store original
-}
-
-function displaySearchResults(searchTerm) {
-    const encodedForUrl = encodeURIComponent(searchTerm);
-    const encodedForHtml = escapeHtml(searchTerm); // Different encoding for HTML
-    // Use each encoded value in its appropriate context
-}
-                    </div>
-                    
-                    <h3>2. Use Context-Specific Encoding</h3>
-                    <p>Different contexts require different encoding rules:</p>
+                    <h2>Why URL Encoding is Important</h2>
+                    <p>URL encoding serves several crucial purposes in web development:</p>
                     
                     <ul>
-                        <li><strong>URL components</strong>: Use <code>encodeURIComponent()</code></li>
-                        <li><strong>HTML content</strong>: Use HTML entity encoding</li>
-                        <li><strong>HTML attributes</strong>: Use attribute encoding</li>
-                        <li><strong>JavaScript</strong>: Use JavaScript string encoding</li>
-                        <li><strong>CSS</strong>: Use CSS encoding</li>
+                        <li><strong>Data Integrity</strong>: Ensures that special characters don't interfere with URL structure</li>
+                        <li><strong>Security</strong>: Prevents injection attacks by encoding potentially dangerous characters</li>
+                        <li><strong>Compatibility</strong>: Makes URLs portable across different systems and browsers</li>
+                        <li><strong>SEO</strong>: Creates clean, readable URLs that search engines can properly index</li>
                     </ul>
                     
-                    <h3>3. Validate Before Encoding</h3>
-                    <p>Always validate input before encoding it. Encoding should not be a substitute for proper input validation:</p>
-                    
-                    <div class="code-block">
-// ✅ Proper approach: validate then encode
-function processUserInput(input) {
-    // 1. Validate input
-    if (!isValidInput(input)) {
-        throw new Error('Invalid input');
-    }
-    
-    // 2. Sanitize if necessary (context-dependent)
-    const sanitized = sanitizeInput(input);
-    
-    // 3. Encode for specific context
-    return encodeURIComponent(sanitized);
-}
+                    <div class="note">
+                        <p><strong>Note:</strong> URL encoding is defined in RFC 3986, which standardizes how URIs should be structured and encoded.</p>
                     </div>
                     
-                    <h2>Advanced Security Techniques</h2>
+                    <h2>Characters That Need Encoding</h2>
+                    <p>Not all characters need to be encoded in a URL. The following categories of characters must be encoded:</p>
                     
-                    <h3>1. Content Security Policy (CSP)</h3>
-                    <p>Implement CSP headers to mitigate the impact of XSS attacks:</p>
-                    
+                    <h3>Reserved Characters</h3>
+                    <p>These characters have special meaning in URLs and must be encoded when used for other purposes:</p>
                     <div class="code-block">
-// Example CSP header
-Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://trusted.cdn.com;
+                        ! * ' ( ) ; : @ & = + $ , / ? % # [ ]
                     </div>
                     
-                    <h3>2. URL Validation</h3>
-                    <p>Validate URLs to ensure they conform to expected patterns:</p>
-                    
+                    <h3>Unsafe Characters</h3>
+                    <p>These characters can cause problems in URLs and should always be encoded:</p>
                     <div class="code-block">
-function isValidUrl(url) {
-    try {
-        const parsedUrl = new URL(url);
-        // Allow only specific domains
-        const allowedDomains = ['example.com', 'trusted-site.org'];
-        return allowedDomains.includes(parsedUrl.hostname);
-    } catch (e) {
-        return false;
-    }
-}
-
-// Also validate URL structure and parameters
-function validateUrlParameters(url) {
-    const parsedUrl = new URL(url);
-    const allowedParams = ['page', 'sort', 'q', 'category'];
-    
-    for (const param of parsedUrl.searchParams.keys()) {
-        if (!allowedParams.includes(param)) {
-            return false;
-        }
-    }
-    
-    return true;
-}
+                        space " < > % { } | \ ^ ~ ` [ ]
                     </div>
                     
-                    <h3>3. Secure Redirects</h3>
-                    <p>Prevent open redirect vulnerabilities by validating redirect URLs:</p>
-                    
-                    <div class="code-block">
-// ❌ Vulnerable redirect
-app.get('/redirect', (req, res) => {
-    const url = req.query.url;
-    res.redirect(url); // Could redirect to malicious site
-});
-
-// ✅ Secure redirect
-app.get('/redirect', (req, res) => {
-    const url = req.query.url;
-    
-    // Validate the redirect URL
-    if (isValidRedirectUrl(url)) {
-        res.redirect(url);
-    } else {
-        res.redirect('/'); // Redirect to safe default
-    }
-});
-
-function isValidRedirectUrl(url) {
-    try {
-        const parsed = new URL(url);
-        // Allow only relative URLs or same-origin absolute URLs
-        return !parsed.hostname || parsed.hostname === 'example.com';
-    } catch (e) {
-        // Allow relative URLs
-        return !url.includes('://');
-    }
-}
-                    </div>
-                    
-                    <h2>Real-World Security Examples</h2>
-                    
-                    <h3>Example 1: Preventing XSS in Search Results</h3>
-                    <div class="code-block">
-// ❌ Vulnerable search results display
-app.get('/search', (req, res) => {
-    const query = req.query.q;
-    // Directly embedding user input in HTML - XSS vulnerability
-    res.send(`<h1>Results for: ${query}</h1>`);
-});
-
-// ✅ Secure search results display
-app.get('/search', (req, res) => {
-    const query = req.query.q;
-    // Encode for HTML context
-    const encodedQuery = escapeHtml(query);
-    res.send(`<h1>Results for: ${encodedQuery}</h1>`);
-});
-
-// HTML encoding function
-function escapeHtml(unsafe) {
-    return unsafe
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-                    </div>
-                    
-                    <h3>Example 2: Secure API Parameter Handling</h3>
-                    <div class="code-block">
-// ❌ Vulnerable API endpoint
-app.get('/api/users', (req, res) => {
-    const userId = req.query.userId;
-    // SQL injection vulnerability
-    db.query(`SELECT * FROM users WHERE id = ${userId}`, (err, results) => {
-        res.json(results);
-    });
-});
-
-// ✅ Secure API endpoint
-app.get('/api/users', (req, res) => {
-    const userId = req.query.userId;
-    
-    // Validate input
-    if (!isValidUserId(userId)) {
-        return res.status(400).json({ error: 'Invalid user ID' });
-    }
-    
-    // Use parameterized queries
-    db.query('SELECT * FROM users WHERE id = ?', [userId], (err, results) => {
-        if (err) {
-            return res.status(500).json({ error: 'Database error' });
-        }
-        res.json(results);
-    });
-});
-                    </div>
-                    
-                    <h2>Security Testing and Validation</h2>
-                    
-                    <h3>1. Automated Security Scanning</h3>
-                    <p>Use automated tools to test for URL encoding vulnerabilities:</p>
-                    
+                    <h3>Non-ASCII Characters</h3>
+                    <p>Any character outside the ASCII character set must be encoded, including:</p>
                     <ul>
-                        <li>OWASP ZAP (Zed Attack Proxy)</li>
-                        <li>Burp Suite</li>
-                        <li>SQLMap for testing SQL injection</li>
-                        <li>XSS scanner tools</li>
+                        <li>Accented characters (é, ñ, ü)</li>
+                        <li>Characters from non-Latin scripts (中文, العربية, русский)</li>
+                        <li>Emoji and other Unicode characters</li>
                     </ul>
                     
-                    <h3>2. Manual Testing</h3>
-                    <p>Test your application with these potentially malicious inputs:</p>
+                    <h2>URL Encoding in Different Programming Languages</h2>
+                    
+                    <h3>JavaScript</h3>
+                    <p>JavaScript provides two main functions for URL encoding:</p>
                     
                     <div class="code-block">
-// Test cases for URL encoding
-const testCases = [
-    '1; DROP TABLE users;',
-    '../../etc/passwd',
-    'javascript:alert(1)',
-    ' OR 1=1 --',
-    '%0D%0ALocation: javascript:alert(1)',
-    '${7*7}',
-    '<!--#exec cmd="/bin/rm -rf /"-->'
-];
+// encodeURIComponent - encodes everything except: A-Z a-z 0-9 - _ . ! ~ * ' ( )
+const encoded = encodeURIComponent("Hello World! &?=+");
+console.log(encoded); // Hello%20World!%20%26%3F%3D%2B
+
+// encodeURI - encodes everything except: A-Z a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #
+const encodedURI = encodeURI("https://example.com/hello world");
+console.log(encodedURI); // https://example.com/hello%20world
+
+// Decoding
+const decoded = decodeURIComponent(encoded);
+console.log(decoded); // Hello World! &?=+
                     </div>
                     
-                    <h3>3. Security Headers</h3>
-                    <p>Implement security headers to enhance protection:</p>
+                    <div class="warning">
+                        <p><strong>Warning:</strong> encodeURI() should not be used to encode entire URLs, as it doesn't encode characters that have special meaning in URLs like &, ?, =, etc. Use encodeURIComponent() for query parameters.</p>
+                    </div>
+                    
+                    <h3>Python</h3>
+                    <p>Python's urllib.parse module provides URL encoding functions:</p>
                     
                     <div class="code-block">
-// Example security headers
-Content-Security-Policy: default-src 'self'
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-X-XSS-Protection: 1; mode=block
-Referrer-Policy: strict-origin-when-cross-origin
+from urllib.parse import quote, quote_plus, unquote
+
+# Basic encoding
+encoded = quote("Hello World! &?=+")
+print(encoded) # Hello%20World%21%20%26%3F%3D%2B
+
+# Encoding with plus signs for spaces (common in form data)
+encoded_plus = quote_plus("Hello World! &?=+")
+print(encoded_plus) # Hello+World%21+%26%3F%3D%2B
+
+# Decoding
+decoded = unquote(encoded)
+print(decoded) # Hello World! &?=+
                     </div>
                     
-                    <h2>Conclusion</h2>
-                    <p>URL encoding is a fundamental security practice that every web developer should master. While it's not a silver bullet that solves all security problems, it's an essential layer in a defense-in-depth security strategy.</p>
+                    <h3>PHP</h3>
+                    <p>PHP offers several functions for URL encoding:</p>
                     
-                    <p>Remember these key points:</p>
+                    <div class="code-block">
+// Basic encoding
+$encoded = urlencode("Hello World! &?=+");
+echo $encoded; // Hello+World%21+%26%3F%3D%2B
+
+// Raw encoding (doesn't convert spaces to +)
+$raw_encoded = rawurlencode("Hello World! &?=+");
+echo $raw_encoded; // Hello%20World%21%20%26%3F%3D%2B
+
+// Decoding
+$decoded = urldecode($encoded);
+echo $decoded; // Hello World! &?=+
+
+$raw_decoded = rawurldecode($raw_encoded);
+echo $raw_decoded; // Hello World! &?=+
+                    </div>
+                    
+                    <h2>Best Practices for URL Encoding</h2>
+                    
+                    <h3>1. Encode Individual Components, Not Entire URLs</h3>
+                    <p>Always encode URL components separately rather than encoding the entire URL:</p>
+                    
+                    <div class="code-block">
+// Good practice - encode components separately
+const baseUrl = "https://example.com/search";
+const query = "hello world & special chars";
+const encodedQuery = encodeURIComponent(query);
+const fullUrl = `${baseUrl}?q=${encodedQuery}`;
+// Result: https://example.com/search?q=hello%20world%20%26%20special%20chars
+
+// Bad practice - encoding the entire URL
+const badUrl = encodeURI("https://example.com/search?q=hello world & special chars");
+// Result: https://example.com/search?q=hello%20world%20&%20special%20chars
+// The & character is not encoded, which breaks the URL
+                    </div>
+                    
+                    <h3>2. Use Appropriate Encoding for Different URL Parts</h3>
+                    <p>Different parts of a URL have different encoding requirements:</p>
                     
                     <ul>
-                        <li>Always encode data for the specific context where it will be used</li>
-                        <li>Validate input before encoding it</li>
-                        <li>Use appropriate encoding functions for different contexts</li>
-                        <li>Implement multiple layers of security defense</li>
-                        <li>Regularly test your application for encoding-related vulnerabilities</li>
+                        <li><strong>Path segments</strong>: Use standard percent-encoding</li>
+                        <li><strong>Query parameters</strong>: Encode both parameter names and values</li>
+                        <li><strong>Fragment identifiers</strong>: Encode special characters</li>
+                    </ul>
+                    
+                    <h3>3. Handle International Characters Properly</h3>
+                    <p>For non-ASCII characters, ensure proper Unicode handling:</p>
+                    
+                    <div class="code-block">
+// JavaScript example with Unicode characters
+const text = "café résumé";
+const encoded = encodeURIComponent(text);
+console.log(encoded); // caf%C3%A9%20r%C3%A9sum%C3%A9
+
+// Python example with Unicode
+from urllib.parse import quote
+text = "café résumé"
+encoded = quote(text)
+print(encoded) # caf%C3%A9%20r%C3%A9sum%C3%A9
+                    </div>
+                    
+                    <h2>Common URL Encoding Mistakes</h2>
+                    
+                    <h3>1. Double Encoding</h3>
+                    <p>This occurs when already-encoded text is encoded again:</p>
+                    
+                    <div class="code-block">
+// Original text: hello world
+// First encoding: hello%20world
+// Second encoding: hello%2520world (the % is encoded as %25)
+
+// To avoid this, check if text is already encoded before encoding
+function safeEncodeURIComponent(str) {
+    try {
+        // Try to decode first - if it changes, it was already encoded
+        const decoded = decodeURIComponent(str);
+        if (decoded !== str) {
+            // String was already encoded, return as-is
+            return str;
+        }
+    } catch (e) {
+        // decoding failed, probably not encoded
+    }
+    return encodeURIComponent(str);
+}
+                    </div>
+                    
+                    <h3>2. Incorrect Character Set Handling</h3>
+                    <p>Ensure you're using the correct character encoding (usually UTF-8):</p>
+                    
+                    <div class="code-block">
+// PHP example - setting proper charset
+ini_set('default_charset', 'UTF-8');
+
+// Python example - explicit encoding
+from urllib.parse import quote
+text = "café"
+encoded = quote(text.encode('utf-8'))
+                    </div>
+                    
+                    <h2>Tools for URL Encoding</h2>
+                    <p>While understanding the technical details is important, sometimes you just need a quick tool:</p>
+                    
+                    <ul>
+                        <li><strong>Online tools</strong>: Like our <a href="../index.html">URL Encoder/Decoder</a></li>
+                        <li><strong>Browser developer tools</strong>: JavaScript console for quick encoding/decoding</li>
+                        <li><strong>Command line tools</strong>: Python, Node.js, or built-in shell commands</li>
                     </ul>
                     
                     <div class="blog-navigation">
-                        <a href="javascript-url-encoding.html">&larr; Previous: URL Encoding in JavaScript</a>
-                        <a href="url-encoding-best-practices.html">Next: URL Encoding Best Practices &rarr;</a>
+                        <a href="../blog.html">&larr; Back to Blog</a>
+                        <a href="url-encoding-seo.html">Next: URL Encoding and SEO &rarr;</a>
                     </div>
                 </div>
                 
@@ -805,16 +693,16 @@ Referrer-Policy: strict-origin-when-cross-origin
                     <h2>Related Articles</h2>
                     <div class="related-grid">
                         <div class="related-card">
+                            <h3><a href="url-encoding-seo.html">How URL Encoding Affects SEO</a></h3>
+                            <p>Discover how proper URL encoding practices can improve your website's search engine rankings.</p>
+                        </div>
+                        <div class="related-card">
                             <h3><a href="javascript-url-encoding.html">URL Encoding in JavaScript</a></h3>
                             <p>Deep dive into JavaScript's encodeURIComponent() and encodeURI() functions.</p>
                         </div>
                         <div class="related-card">
-                            <h3><a href="url-encoding-best-practices.html">URL Encoding Best Practices</a></h3>
-                            <p>Discover industry best practices for URL encoding to ensure compatibility and security.</p>
-                        </div>
-                        <div class="related-card">
-                            <h3><a href="complete-guide-url-encoding.html">Complete Guide to URL Encoding</a></h3>
-                            <p>Learn everything about URL encoding, from basic concepts to advanced techniques.</p>
+                            <h3><a href="url-encoding-security.html">URL Encoding for Web Security</a></h3>
+                            <p>Learn how proper URL encoding can protect your website from injection attacks.</p>
                         </div>
                     </div>
                 </div>
