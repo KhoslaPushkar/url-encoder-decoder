@@ -458,21 +458,20 @@
 <body>
     <div class="main-container">
         <header class="cursor-header">
-            <div class="header-left">
-                <a href="../index.html" class="logo">urlencoderdecoder.com</a>
-                <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
-                <div class="nav-items" id="nav-items">
-                    <a href="../index.html" class="nav-item">Home</a>
-                    <a href="../blog.html" class="nav-item">Blog</a>
-                    <a href="../about.html" class="nav-item">About</a>
-                    <a href="../contact.html" class="nav-item">Contact</a>
-                </div>
-            </div>
-            
-            <div class="header-right">
-                <div class="hostname-badge">urlencoderdecoder.com</div>
-            </div>
-        </header>
+        <div class="header-left">
+          <a href="index.html" class="logo">urlencoderdecoder.com</a>
+          <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+        
+        <div class="header-right">
+          <div class="nav-items" id="nav-items">
+            <a href="https://urlencoderdecoder.com/index.html" class="nav-item">Home</a>
+            <a href="https://urlencoderdecoder.com/about.html" class="nav-item">About</a>
+			      <a href="https://urlencoderdecoder.com/blogs/blog.html" class="nav-item active">Blog</a>
+            <a href="https://urlencoderdecoder.com/contact.html" class="nav-item">Contact</a>
+          </div>
+        </div>
+      </header>
         
         <main class="container">
             <section class="hero">
@@ -860,7 +859,7 @@ console.log(parsedParams);
   }
 
   loadComponent("header", "header.html");
-  loadComponent("footer", "footer.html");
+  loadComponent("footer", "/footer.html");
 </script>
 </body>
 </html>
