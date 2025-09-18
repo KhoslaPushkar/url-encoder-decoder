@@ -1,7 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
-    <loc>https://urlencoderdecoder.com/</loc>
-    <lastmod>2025-04-07</lastmod>
+    <loc>https://www.urlencoderdecoder.com/</loc>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
   </url>
+
+  <url>
+    <loc>https://www.urlencoderdecoder.com/about.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.urlencoderdecoder.com/blog.html</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.urlencoderdecoder.com/blog-complete-guide-url-encoding.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.urlencoderdecoder.com/blog-javascript-url-encoding.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.urlencoderdecoder.com/blog-python-url-encoding.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.urlencoderdecoder.com/blog-url-encoding-best-practices.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.urlencoderdecoder.com/blog-url-encoding-security.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.urlencoderdecoder.com/blog-url-encoding-seo.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.urlencoderdecoder.com/contact.html</loc>
+    <priority>0.6</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.urlencoderdecoder.com/disclaimer.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.urlencoderdecoder.com/footer.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.urlencoderdecoder.com/header.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.urlencoderdecoder.com/privacy.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.urlencoderdecoder.com/terms.html</loc>
+  </url>
+
 </urlset>
