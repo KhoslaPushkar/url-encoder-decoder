@@ -44,6 +44,14 @@
   </url>
 
   <url>
+    <loc>https://urlencoderdecoder.com/blog-URL-Parameter-Encoding-in-REST-APIs.html</loc>
+  </url>
+
+  <url>
+    <loc>https://urlencoderdecoder.com/blog-xss-injection-prevention.html</loc>
+  </url>
+
+  <url>
     <loc>https://www.urlencoderdecoder.com/contact.html</loc>
     <priority>0.6</priority>
     <changefreq>yearly</changefreq>
