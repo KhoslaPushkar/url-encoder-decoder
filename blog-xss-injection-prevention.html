@@ -469,6 +469,16 @@
             }
         }
     </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1D48NWLW0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-Z1D48NWLW0');
+    </script>
 </head>
 
 <body>
@@ -493,7 +503,8 @@
             <section class="hero">
                 <h1>Preventing XSS and Injection Attacks with Proper URL Encoding</h1>
                 <p>
-                    Master essential security techniques to protect your web applications from XSS attacks and injection vulnerabilities through proper URL encoding practices and input validation.
+                    Master essential security techniques to protect your web applications from XSS attacks and injection
+                    vulnerabilities through proper URL encoding practices and input validation.
                 </p>
             </section>
 
@@ -507,18 +518,26 @@
 
                     <h2>The Critical Role of URL Encoding in Web Security</h2>
                     <p>
-                        Cross-site scripting (XSS) and injection attacks remain among the most dangerous threats to web applications today. According to OWASP's Top 10, injection vulnerabilities consistently rank as critical security risks that can compromise entire systems. <strong>Proper URL encoding</strong> serves as a fundamental defense mechanism, transforming potentially malicious input into safe, interpretable data that cannot execute harmful code.
+                        Cross-site scripting (XSS) and injection attacks remain among the most dangerous threats to web
+                        applications today. According to OWASP's Top 10, injection vulnerabilities consistently rank as
+                        critical security risks that can compromise entire systems. <strong>Proper URL encoding</strong>
+                        serves as a fundamental defense mechanism, transforming potentially malicious input into safe,
+                        interpretable data that cannot execute harmful code.
                     </p>
 
                     <p>
-                        When user input flows through URLs without proper encoding, attackers can inject malicious scripts, SQL commands, or system commands that execute with your application's privileges. Understanding how URL encoding prevents these attacks is essential for building secure web applications that protect both your users and your business.
+                        When user input flows through URLs without proper encoding, attackers can inject malicious
+                        scripts, SQL commands, or system commands that execute with your application's privileges.
+                        Understanding how URL encoding prevents these attacks is essential for building secure web
+                        applications that protect both your users and your business.
                     </p>
 
                     <h2>Understanding XSS Attacks Through URL Parameters</h2>
 
                     <h3>Reflected XSS via URL Parameters</h3>
                     <p>
-                        Reflected XSS occurs when malicious scripts are injected through URL parameters and immediately reflected back to users. Consider this vulnerable scenario:
+                        Reflected XSS occurs when malicious scripts are injected through URL parameters and immediately
+                        reflected back to users. Consider this vulnerable scenario:
                     </p>
 
                     <pre class="code-block">
@@ -531,7 +550,8 @@ https://example.com/search?query=&lt;script&gt;alert('XSS')&lt;/script&gt;
                     </pre>
 
                     <div class="warning">
-                        <strong>Security Risk:</strong> Unencoded parameters can execute arbitrary JavaScript, steal cookies, hijack sessions, or redirect users to malicious sites.
+                        <strong>Security Risk:</strong> Unencoded parameters can execute arbitrary JavaScript, steal
+                        cookies, hijack sessions, or redirect users to malicious sites.
                     </div>
 
                     <h3>How Proper Encoding Prevents XSS</h3>
@@ -552,7 +572,9 @@ https://example.com/search?query=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E
 
                     <h3>Understanding the Threat</h3>
                     <p>
-                        SQL injection attacks exploit inadequately sanitized URL parameters that flow into database queries. Attackers manipulate parameters to alter query logic and gain unauthorized access to data.
+                        SQL injection attacks exploit inadequately sanitized URL parameters that flow into database
+                        queries. Attackers manipulate parameters to alter query logic and gain unauthorized access to
+                        data.
                     </p>
 
                     <pre class="code-block">
@@ -696,7 +718,8 @@ app.use((req, res, next) => {
                     </pre>
 
                     <div class="security-alert">
-                        <strong>Pro Tip:</strong> Even with perfect URL encoding, always implement CSP headers, input validation, output encoding, and parameterized queries as complementary security layers.
+                        <strong>Pro Tip:</strong> Even with perfect URL encoding, always implement CSP headers, input
+                        validation, output encoding, and parameterized queries as complementary security layers.
                     </div>
 
                     <h2>Framework-Specific Security Practices</h2>
@@ -812,16 +835,23 @@ function logSecurityEvent(type, details, req) {
 
                     <h2>Conclusion</h2>
                     <p>
-                        Proper URL encoding is not just a technical requirement—it's a critical security control that protects your applications from some of the most common and dangerous web vulnerabilities. By implementing comprehensive encoding, validation, and sanitization practices, you create robust defenses against XSS, injection attacks, and other parameter-based threats.
+                        Proper URL encoding is not just a technical requirement—it's a critical security control that
+                        protects your applications from some of the most common and dangerous web vulnerabilities. By
+                        implementing comprehensive encoding, validation, and sanitization practices, you create robust
+                        defenses against XSS, injection attacks, and other parameter-based threats.
                     </p>
 
                     <p>
-                        Remember that security is not a one-time implementation but an ongoing practice. Regular security reviews, automated testing, and staying current with emerging threats ensure your URL encoding practices continue to protect your applications and users effectively.
+                        Remember that security is not a one-time implementation but an ongoing practice. Regular
+                        security reviews, automated testing, and staying current with emerging threats ensure your URL
+                        encoding practices continue to protect your applications and users effectively.
                     </p>
 
                     <div class="blog-navigation">
-                        <a href="https://urlencoderdecoder.com/blog-URL-Parameter-Encoding-in-REST-APIs.html" target="_blank">&larr; Previous: REST API Parameter Encoding</a>
-                        <a href="https://urlencoderdecoder.com/blog-url-encoding-seo.html" target="_blank">Next: URL Encoding Performance Optimization &rarr;</a>
+                        <a href="https://urlencoderdecoder.com/blog-URL-Parameter-Encoding-in-REST-APIs.html"
+                            target="_blank">&larr; Previous: REST API Parameter Encoding</a>
+                        <a href="https://urlencoderdecoder.com/blog-url-encoding-seo.html" target="_blank">Next: URL
+                            Encoding Performance Optimization &rarr;</a>
                     </div>
                 </div>
 
@@ -829,19 +859,24 @@ function logSecurityEvent(type, details, req) {
                     <h2>Related Articles</h2>
                     <div class="related-grid">
                         <div class="related-card">
-                            <h3><a href="https://urlencoderdecoder.com/blog-URL-Parameter-Encoding-in-REST-APIs.html" target="_blank">Best Practices for URL Parameter Encoding in REST APIs</a></h3>
-                            <p>Discover Best Practices for URL Parameter Encoding in REST APIs. Learn best practices for clean and optimized URLs.</p>
+                            <h3><a href="https://urlencoderdecoder.com/blog-URL-Parameter-Encoding-in-REST-APIs.html"
+                                    target="_blank">Best Practices for URL Parameter Encoding in REST APIs</a></h3>
+                            <p>Discover Best Practices for URL Parameter Encoding in REST APIs. Learn best practices for
+                                clean and optimized URLs.</p>
                         </div>
                         <div class="related-card">
-                            <h3><a href="https://urlencoderdecoder.com/blog-url-encoding-security.html" target="_blank">URL Encoding for Web Security</a></h3>
+                            <h3><a href="https://urlencoderdecoder.com/blog-url-encoding-security.html"
+                                    target="_blank">URL Encoding for Web Security</a></h3>
                             <p>Learn fundamental security practices for safe URL handling in web applications.</p>
                         </div>
                         <div class="related-card">
-                            <h3><a href="https://urlencoderdecoder.com/blog-api-parameter-encoding.html" target="_blank">REST API Parameter Encoding</a></h3>
+                            <h3><a href="https://urlencoderdecoder.com/blog-api-parameter-encoding.html"
+                                    target="_blank">REST API Parameter Encoding</a></h3>
                             <p>Best practices for secure URL parameter handling in REST API design.</p>
                         </div>
                         <div class="related-card">
-                            <h3><a href="https://urlencoderdecoder.com/blog-complete-guide-url-encoding.html" target="_blank">Complete Guide to URL Encoding</a></h3>
+                            <h3><a href="https://urlencoderdecoder.com/blog-complete-guide-url-encoding.html"
+                                    target="_blank">Complete Guide to URL Encoding</a></h3>
                             <p>Master URL encoding standards and implementation techniques across languages.</p>
                         </div>
                     </div>

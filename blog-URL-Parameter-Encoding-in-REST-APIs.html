@@ -470,6 +470,17 @@
             }
         }
     </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1D48NWLW0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-Z1D48NWLW0');
+    </script>
+
 </head>
 
 <body>
@@ -491,36 +502,42 @@
         </header>
 
         <main class="container">
-    <section class="hero">
-        <h1>Best Practices for URL Parameter Encoding in REST APIs</h1>
-        <p>
-            Learn how precise URL parameter encoding ensures robust REST API design, prevents security vulnerabilities,
-            and guarantees reliable data transmission across clients and servers.
-        </p>
-    </section>
+            <section class="hero">
+                <h1>Best Practices for URL Parameter Encoding in REST APIs</h1>
+                <p>
+                    Learn how precise URL parameter encoding ensures robust REST API design, prevents security
+                    vulnerabilities,
+                    and guarantees reliable data transmission across clients and servers.
+                </p>
+            </section>
 
-    <section class="blog-container" style="text-align: justify;">
-        <div class="blog-content">
-            <div class="blog-meta">
-                <span class="blog-category">API</span>
-                <span>October 1, 2025</span>
-                <span>8 min read</span>
-            </div>
+            <section class="blog-container" style="text-align: justify;">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">API</span>
+                        <span>October 1, 2025</span>
+                        <span>8 min read</span>
+                    </div>
 
-            <h2>Why Proper Parameter Encoding Matters</h2>
-            <p>
-                In REST API design, query parameters carry critical information—filters, pagination settings, authentication
-                tokens, and more. When parameters aren’t correctly encoded, you risk broken endpoints, corrupted data, and
-                serious security flaws. Proper encoding transforms special characters into safe representations, ensuring
-                that HTTP clients and servers interpret parameters exactly as intended.
-            </p>
+                    <h2>Why Proper Parameter Encoding Matters</h2>
+                    <p>
+                        In REST API design, query parameters carry critical information—filters, pagination settings,
+                        authentication
+                        tokens, and more. When parameters aren’t correctly encoded, you risk broken endpoints, corrupted
+                        data, and
+                        serious security flaws. Proper encoding transforms special characters into safe representations,
+                        ensuring
+                        that HTTP clients and servers interpret parameters exactly as intended.
+                    </p>
 
-            <h2>1. Consistent Encoding with RFC 3986</h2>
-            <p>
-                Always follow the RFC 3986 specification for percent-encoding reserved characters. For example, spaces
-                become <code>%20</code>, ampersands become <code>%26</code>, and slashes become <code>%2F</code>.
-            </p>
-            <pre class="code-block">
+                    <h2>1. Consistent Encoding with RFC 3986</h2>
+                    <p>
+                        Always follow the RFC 3986 specification for percent-encoding reserved characters. For example,
+                        spaces
+                        become <code>%20</code>, ampersands become <code>%26</code>, and slashes become
+                        <code>%2F</code>.
+                    </p>
+                    <pre class="code-block">
 // Incorrect: unencoded ampersand breaks query parsing
 https://api.example.com/users?name=John&Doe&age=30
 
@@ -528,12 +545,13 @@ https://api.example.com/users?name=John&Doe&age=30
 https://api.example.com/users?name=John%26Doe&age=30
             </pre>
 
-            <h2>2. Use Language-Native Encoding Functions</h2>
-            <p>
-                Leverage built-in functions to avoid manual mistakes. In JavaScript, use<code>encodeURIComponent()</code>,
-                and in Python, use<code>urllib.parse.quote_plus()</code>.
-            </p>
-            <pre class="code-block">
+                    <h2>2. Use Language-Native Encoding Functions</h2>
+                    <p>
+                        Leverage built-in functions to avoid manual mistakes. In JavaScript,
+                        use<code>encodeURIComponent()</code>,
+                        and in Python, use<code>urllib.parse.quote_plus()</code>.
+                    </p>
+                    <pre class="code-block">
 // JavaScript
 const params = new URLSearchParams({ search: 'C# & .NET', page: '1' });
 console.log(params.toString());
@@ -546,39 +564,42 @@ print(qs)
 # Output: search=C%23+%26+.NET&page=1
             </pre>
 
-            <h2>3. Handle Reserved Characters in Path and Query</h2>
-            <p>
-                Distinguish between path segments and query parameters. Encode slashes in path variables, but use
-                <code>encodeURIComponent()</code> only on values, not entire URLs.
-            </p>
-            <pre class="code-block">
+                    <h2>3. Handle Reserved Characters in Path and Query</h2>
+                    <p>
+                        Distinguish between path segments and query parameters. Encode slashes in path variables, but
+                        use
+                        <code>encodeURIComponent()</code> only on values, not entire URLs.
+                    </p>
+                    <pre class="code-block">
 // Path parameter encoding
 const userId = encodeURIComponent('alice/bob');
 fetch(`https://api.example.com/users/${userId}`);
 // URL: https://api.example.com/users/alice%2Fbob
             </pre>
 
-            <h2>4. Secure Against Injection Attacks</h2>
-            <p>
-                Improper encoding can open doors to injection attacks. Always validate and encode user-supplied input,
-                especially when parameters influence database queries or shell commands.
-            </p>
+                    <h2>4. Secure Against Injection Attacks</h2>
+                    <p>
+                        Improper encoding can open doors to injection attacks. Always validate and encode user-supplied
+                        input,
+                        especially when parameters influence database queries or shell commands.
+                    </p>
 
-            <h2>5. Maintain Readability and Debuggability</h2>
-            <p>
-                While full percent-encoding is necessary, you can improve readability by using '+' for spaces in query
-                strings and encoding only reserved characters.
-            </p>
-            <pre class="code-block">
+                    <h2>5. Maintain Readability and Debuggability</h2>
+                    <p>
+                        While full percent-encoding is necessary, you can improve readability by using '+' for spaces in
+                        query
+                        strings and encoding only reserved characters.
+                    </p>
+                    <pre class="code-block">
 // Readable encoding: spaces as '+'
 https://api.example.com/search?query=hello+world&page=2
             </pre>
 
-            <h2>6. Document Encoding Rules in Your API Spec</h2>
-            <p>
-                Clearly specify encoding requirements in your OpenAPI or Swagger documentation. Example:
-            </p>
-            <pre class="code-block">
+                    <h2>6. Document Encoding Rules in Your API Spec</h2>
+                    <p>
+                        Clearly specify encoding requirements in your OpenAPI or Swagger documentation. Example:
+                    </p>
+                    <pre class="code-block">
 // OpenAPI 3.0 example
 paths:
   /search:
@@ -606,39 +627,47 @@ paths:
             ...
             </pre>
 
-            <h2>Conclusion</h2>
-            <p>
-                Adopting strict URL parameter encoding practices not only prevents errors and security vulnerabilities
-                but also improves interoperability across diverse clients and services. By following RFC 3986, using
-                native encoding functions, and documenting your rules clearly, you create a robust, maintainable
-                REST API that developers trust.
-            </p>
+                    <h2>Conclusion</h2>
+                    <p>
+                        Adopting strict URL parameter encoding practices not only prevents errors and security
+                        vulnerabilities
+                        but also improves interoperability across diverse clients and services. By following RFC 3986,
+                        using
+                        native encoding functions, and documenting your rules clearly, you create a robust, maintainable
+                        REST API that developers trust.
+                    </p>
 
-            <div class="blog-navigation">
-                        <a href="https://urlencoderdecoder.com/blog-url-encoding-best-practices.html" target="_blank">&larr; Previous: URL Encoding Best Practices</a>
-                        <a href="https://urlencoderdecoder.com/blog-url-encoding-security.html" target="_blank">Next: URL Encoding for Web Security &rarr;</a>
+                    <div class="blog-navigation">
+                        <a href="https://urlencoderdecoder.com/blog-url-encoding-best-practices.html"
+                            target="_blank">&larr; Previous: URL Encoding Best Practices</a>
+                        <a href="https://urlencoderdecoder.com/blog-url-encoding-security.html" target="_blank">Next:
+                            URL Encoding for Web Security &rarr;</a>
                     </div>
-        </div>
+                </div>
 
-        <div class="related-posts" style="text-align: left;">
-            <h2>Related Articles</h2>
-            <div class="related-grid">
-                <div class="related-card">
-                    <h3><a href="https://urlencoderdecoder.com/blog-complete-guide-url-encoding.html" target="_blank">Complete Guide to URL Encoding</a></h3>
-                    <p>Discover all there is to know about URL encoding standards and implementations.</p>
+                <div class="related-posts" style="text-align: left;">
+                    <h2>Related Articles</h2>
+                    <div class="related-grid">
+                        <div class="related-card">
+                            <h3><a href="https://urlencoderdecoder.com/blog-complete-guide-url-encoding.html"
+                                    target="_blank">Complete Guide to URL Encoding</a></h3>
+                            <p>Discover all there is to know about URL encoding standards and implementations.</p>
+                        </div>
+                        <div class="related-card">
+                            <h3><a href="https://urlencoderdecoder.com/blog-url-encoding-best-practices.html"
+                                    target="_blank">URL Encoding Best Practices</a></h3>
+                            <p>Learn the industry best practices for URL encoding to ensure compatibility and security.
+                            </p>
+                        </div>
+                        <div class="related-card">
+                            <h3><a href="https://urlencoderdecoder.com/blog-api-parameter-security.html"
+                                    target="_blank">Secure REST API Parameter Handling</a></h3>
+                            <p>Explore methods to validate and secure query parameters in your RESTful services.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="related-card">
-                    <h3><a href="https://urlencoderdecoder.com/blog-url-encoding-best-practices.html" target="_blank">URL Encoding Best Practices</a></h3>
-                    <p>Learn the industry best practices for URL encoding to ensure compatibility and security.</p>
-                </div>
-                <div class="related-card">
-                    <h3><a href="https://urlencoderdecoder.com/blog-api-parameter-security.html" target="_blank">Secure REST API Parameter Handling</a></h3>
-                    <p>Explore methods to validate and secure query parameters in your RESTful services.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
+            </section>
+        </main>
     </div>
 
     <div id="footer"></div>
